@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h1>Aufseher Bereich</h1>
+  <h4>Basic mat-select</h4>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Users</mat-label>
+      <input type="text"
+             placeholder="User"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelectChange($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.firstName}} {{option.lastName}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <ng-container *ngIf="userId">
+    <app-user-card [userId]="userId"></app-user-card>
+  </ng-container>
+</div>

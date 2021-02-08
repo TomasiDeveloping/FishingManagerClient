@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <h1>Statistik Übersicht</h1>
+</div>
+<ng-container *ngIf="statistics">
+<mat-accordion>
+<!--  Basic Panel-->
+  <mat-expansion-panel *ngFor="let item of statistics" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{item.year}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{item.licenceName}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+<!--    Panel for each month-->
+    <mat-expansion-panel *ngFor="let month of item.statistic.months">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Monat
+        </mat-panel-title>
+        <mat-panel-description>
+          {{this.getNameOfMonth(month.month)}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+<!--      Panel for each day-->
+      <mat-expansion-panel *ngFor="let day of month.days">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Tag
+          </mat-panel-title>
+          <mat-panel-description>
+            {{day.day}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Ausgeübte Stunden: {{day.hour}}</p>
+        <h3>Fänge</h3>
+<!--        Table for each catch-->
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Fischart</th>
+            <th scope="col">Anzahl</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let fishCatch of day.fishCatches">
+            <td>{{fishCatch.fish}}</td>
+            <td>{{fishCatch.number}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </mat-expansion-panel>
+    </mat-expansion-panel>
+  </mat-expansion-panel>
+</mat-accordion>
+</ng-container>
+<ng-container *ngIf="statistics && statistics.length <= 0">
+  <h2>Keine Statistik verfügbar</h2>
+</ng-container>

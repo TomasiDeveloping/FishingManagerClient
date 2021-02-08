@@ -1,0 +1,6 @@
+a.dropdown-item {
+  cursor: pointer;
+}
+.btn-group > button {
+  color: black;
+}

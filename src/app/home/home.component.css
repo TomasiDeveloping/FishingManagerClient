@@ -1,0 +1,9 @@
+#sparingTimes {
+  margin-top: 50px;
+}
+
+@media (max-width: 767.98px) {
+  #club {
+    margin-top: 50px;
+  }
+}

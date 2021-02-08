@@ -1,0 +1,27 @@
+<ng-container *ngIf="fishingClub">
+  <div class="row">
+    <div class="col-sm">{{fishingClub.name}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{fishingClub.address.title}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{fishingClub.address.street}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{fishingClub.address.addressAddition}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{fishingClub.address.zip}} {{fishingClub.address.city}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm"><hr></div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{fishingClub.address.phone}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm"><a href="{{fishingClub.website}}" target="_blank">{{fishingClub.name}}</a></div>
+  </div>
+</ng-container>
+

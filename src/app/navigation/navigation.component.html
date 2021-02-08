@@ -1,0 +1,54 @@
+<ng-container *ngIf="loggedInUser">
+  <nav ngxNavbarDynamicExpand class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Fischerverein Muster</a>
+      <button class="navbar-toggler" type="button" (click)="collapse.toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ngx-navbar-collapse #collapse="ngxNavbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/lizenzen" routerLinkActive="active">Lizenzen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/fangstatistik" routerLinkActive="active">Fangstatistik</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/aufseher" routerLinkActive="active">Aufseher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+          </li>
+          <li class="nav-item">
+            <div class="btn-group" dropdown>
+              <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                {{currentUser?.firstName}} {{currentUser?.lastName}}
+                <span class="caret"></span>
+              </button>
+              <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem"><a class="dropdown-item">
+                  <i class="fa fa-cogs mr-3"></i>Bearbeiten
+                </a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="logout()">
+                  <i class="fa fa-sign-out mr-2"></i>Logout
+                </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </ngx-navbar-collapse>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
+<ng-container *ngIf="!loggedInUser">
+  <app-login (login)="loginUser($event)"></app-login>
+</ng-container>
+
