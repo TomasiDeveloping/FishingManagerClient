@@ -1,0 +1,26 @@
+<ng-container *ngIf="currentUser">
+  <div class="row">
+    <div class="col-sm">{{currentUser.address.title}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.firstName}} {{currentUser.lastName}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.address.street}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.address.addressAddition}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.address.zip}} {{currentUser.address.city}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm"><hr></div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.email}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm">{{currentUser.address.phone}}</div>
+  </div>
+</ng-container>

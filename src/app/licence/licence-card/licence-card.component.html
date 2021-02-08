@@ -1,0 +1,24 @@
+<ng-container *ngIf="licences">
+  <div class="card mb-4" *ngFor="let licence of licences">
+    <h3 class="card-header">{{licence.licenceName}}</h3>
+    <div class="card-body">
+      <h3 class="card-title">Lizenz Name: {{licence.licenceName}}</h3>
+      <p class="card-text">Lizenz Inhaber: {{licence.userName}}</p>
+      <p class="card-text">Ausgestellt durch: {{licence.creatorName}}</p>
+      <p class="card-text">Gültig von: {{licence.startDate | date: 'dd.MM.yyyy HH:mm'}}</p>
+      <p class="card-text">Gültig bis: {{licence.endDate | date: 'dd.MM.yyyy HH:mm'}}</p>
+      <p class="card-text text-success" *ngIf="currentDate | amIsBefore:licence.endDate:'days'">
+        Verbleibende Tage: {{ licence.endDate | amDifference: currentDate :'days'}} Tage</p>
+      <p class="card-text text-success" *ngIf="(licence.endDate | amDifference: currentDate :'days') === 0 &&
+                                                  (licence.endDate | amDifference: currentDate :'hours') > -1">
+        Verbleibende Stunden: {{ licence.endDate | amDifference: currentDate :'hours'}} Stunden
+      </p>
+      <p class="card-text text-danger" *ngIf="!(currentDate | amIsBefore:licence.endDate:'hour')">Lizenz abgelaufen</p>
+      <!--      <a href="#" class="btn btn-primary">Go somewhere</a>-->
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="licences && licences.length <= 0">
+  <h2>Keine Lizenzen verfügbar</h2>
+</ng-container>
+

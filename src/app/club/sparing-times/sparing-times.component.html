@@ -1,0 +1,21 @@
+<ng-container *ngIf="fishingClub">
+<h2>Fische und ihre Schonzeiten</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Fischart</th>
+    <th scope="col">Schonmass</th>
+    <th scope="col">Schonzeit von:</th>
+    <th scope="col">Schonzeit bis:</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let fish of fishingClub.fishSpecies.FishArten.Fisch">
+    <th scope="row">{{fish.Name}}</th>
+    <td>{{fish.Schonmass}}</td>
+    <td>{{fish.SchonZeitVon}}</td>
+    <td>{{fish.SchonZeitBis}}</td>
+  </tr>
+  </tbody>
+</table>
+</ng-container>

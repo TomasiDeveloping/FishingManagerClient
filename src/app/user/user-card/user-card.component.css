@@ -1,0 +1,10 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (max-width: 377px) {
+  .buttons > button:last-child {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,36 @@
+<ng-container *ngIf="user">
+  <div class="card mb-4">
+    <h3 class="card-header">{{user.firstName}} {{user.lastName}}</h3>
+    <div class="card-body">
+      <p class="card-text">{{user.address.street}}</p>
+      <p class="card-text">{{user.address.zip}} {{user.address.city}}</p>
+      <hr>
+      <p class="card-text">{{user.email}}</p>
+      <p class="card-text">{{user.address.phone}}</p>
+      <mat-checkbox color="primary" [disabled]="true" [checked]="user.active">Aktiv</mat-checkbox>
+      <p class="card-text">Plattform Recht: {{user.rightName}}</p>
+      <h4>Verstosse</h4>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Erfasst von</th>
+          <th scope="col">Datum</th>
+          <th scope="col">Beschreibung</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Peter Müller</td>
+          <td>01.01.2021</td>
+          <td>Mit Wiederhaken geangelt</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="buttons">
+        <button class="btn btn-outline-success">Verstoss eintragen</button>
+        <button class="btn btn-outline-danger">User sperren</button>
+      </div>
+
+    </div>
+  </div>
+</ng-container>
