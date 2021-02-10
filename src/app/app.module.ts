@@ -29,6 +29,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
+import { InfringementComponent } from './infringement/infringement.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FishCatchHistoryDialogComponent } from './fishCatchHistory/fish-catch-history-dialog/fish-catch-history-dialog.component';
+import { CurrentDayStatisticDialogComponent } from './supervisor/current-day-statistic-dialog/current-day-statistic-dialog.component';
+import { InsertInfringementDialogComponent } from './infringement/insert-infringement-dialog/insert-infringement-dialog.component';
+import { FishCatchHistoryInsertDialogComponent } from './fishCatchHistory/fish-catch-history-insert-dialog/fish-catch-history-insert-dialog.component';
 
 
 @NgModule({
@@ -46,6 +52,11 @@ import {MatInputModule} from '@angular/material/input';
     SparingTimesComponent,
     LicenceCardComponent,
     UserCardComponent,
+    InfringementComponent,
+    FishCatchHistoryDialogComponent,
+    CurrentDayStatisticDialogComponent,
+    InsertInfringementDialogComponent,
+    FishCatchHistoryInsertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +74,7 @@ import {MatInputModule} from '@angular/material/input';
     MatSelectModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     })

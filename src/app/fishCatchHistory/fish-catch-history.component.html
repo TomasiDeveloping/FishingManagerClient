@@ -14,6 +14,7 @@
         {{item.licenceName}}
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <button (click)="onAddStatistic(item)" class="btn btn-success btn-block">Neuer Eintrag</button>
 <!--    Panel for each month-->
     <mat-expansion-panel *ngFor="let month of item.statistic.months">
       <mat-expansion-panel-header>

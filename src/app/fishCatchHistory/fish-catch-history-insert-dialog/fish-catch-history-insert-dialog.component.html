@@ -1,0 +1,58 @@
+<ng-container *ngIf="statistic && fishingClub">
+  <h1 mat-dialog-title>Neuer Statistik Eintrag</h1>
+  <mat-dialog-content>
+    <form [formGroup]="statisticForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="day">Tag</label>
+          <input id="day" type="text" formControlName="day" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="month">Monat</label>
+          <input id="month" type="text" formControlName="month" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="hour">Stunden</label>
+        <input id="hour" type="text" formControlName="hour" class="form-control">
+      </div>
+
+
+      <ng-container formArrayName="fishs">
+        <div *ngFor="let f of fishs.controls; let i=index">
+
+          <ng-container [formGroupName]="i">
+            <div class="form-group">
+              <label for="fish">Fischart</label>
+              <select id="fish" formControlName="fish" class="form-control">
+                <option *ngFor="let fish of fish" [ngValue]="fish">{{fish}}</option>
+                <option [ngValue]="'other'">Andere</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="number">Anzahl</label>
+              <input id="number" type="number" formControlName="number" class="form-control">
+            </div>
+          </ng-container>
+        </div>
+
+
+
+      </ng-container>
+      <button type="button" (click)="addFish()" class="btn btn-success">Add</button>
+
+
+
+      <!--      <div class="form-group" *ngIf="statisticForm.controls.fish.value === 'other'">-->
+      <!--        <label for="other">Fischart</label>-->
+      <!--        <input id="other" type="text" formControlName="other" class="form-control">-->
+      <!--        <small class="form-text text-muted">Wenn anderer Fisch bitte Fischart eintragen</small>-->
+      <!--      </div>-->
+
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Speichern</button>
+        <button (click)="onClose()" type="button" class="btn btn-danger">Abbrechen</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</ng-container>

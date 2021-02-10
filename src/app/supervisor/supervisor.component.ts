@@ -5,6 +5,10 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {LicenceService} from '../licence/licence.service';
+import {Licence} from '../core/models/licence';
+import {MatDialog} from '@angular/material/dialog';
+import {FishCatchHistoryDialogComponent} from '../fishCatchHistory/fish-catch-history-dialog/fish-catch-history-dialog.component';
 
 @Component({
   selector: 'app-supervisor',
@@ -13,12 +17,16 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 })
 export class SupervisorComponent implements OnInit {
   users: User[];
+  licences: Licence[];
   userId: number;
   // tslint:disable-next-line:new-parens
   myControl = new FormControl;
   filteredOptions: Observable<User[]>;
+  currentDate = new Date();
 
-  constructor(private clubService: ClubService) { }
+  constructor(private clubService: ClubService,
+              private licenceService: LicenceService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -40,6 +48,11 @@ export class SupervisorComponent implements OnInit {
     });
   }
 
+  getLicencesByUserId(userId: number): void {
+    this.licenceService.getLicenceByUserId(userId).subscribe(result => {
+      this.licences = result;
+    });
+  }
 
 
   private _filter(value: string): User[] {
@@ -55,5 +68,14 @@ export class SupervisorComponent implements OnInit {
 
   onSelectChange(event: MatAutocompleteSelectedEvent): void {
     this.userId = event.option.value.userId;
+    this.getLicencesByUserId(this.userId);
+  }
+
+  onStatistic(licenceId: number): void {
+    this.dialog.open(FishCatchHistoryDialogComponent, {
+      width: '80%',
+      height: 'auto',
+      data: licenceId
+    });
   }
 }

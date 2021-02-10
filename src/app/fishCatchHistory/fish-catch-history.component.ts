@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Statistic} from '../core/models/statistic';
 import {FishCatchHistoryService} from './fish-catch-history.service';
+import {MatDialog} from '@angular/material/dialog';
+import {FishCatchHistoryInsertDialogComponent} from './fish-catch-history-insert-dialog/fish-catch-history-insert-dialog.component';
 
 @Component({
   selector: 'app-fish-catch-history',
@@ -11,7 +13,8 @@ export class FishCatchHistoryComponent implements OnInit {
   statistics: Statistic[];
   panelOpenState = false;
 
-  constructor(private statisticService: FishCatchHistoryService) { }
+  constructor(private statisticService: FishCatchHistoryService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getStatisticsByUserId();
@@ -20,7 +23,6 @@ export class FishCatchHistoryComponent implements OnInit {
   getStatisticsByUserId(): void {
     this.statisticService.getStatisticByUserId(+localStorage.getItem('id')).subscribe(result => {
       this.statistics = result;
-      console.log(this.statistics);
     });
   }
 
@@ -41,4 +43,11 @@ export class FishCatchHistoryComponent implements OnInit {
     }
   }
 
+  onAddStatistic(item: Statistic): void {
+    this.dialog.open(FishCatchHistoryInsertDialogComponent, {
+      width: '60%',
+      height: 'auto',
+      data: item
+    });
+  }
 }

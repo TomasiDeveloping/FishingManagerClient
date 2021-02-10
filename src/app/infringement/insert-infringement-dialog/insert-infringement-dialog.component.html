@@ -1,0 +1,24 @@
+<ng-container>
+  <h1 mat-dialog-title>Neuer Verstoss</h1>
+  <mat-dialog-content>
+    <form [formGroup]="infringementForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="description">Verstoss</label>
+        <input
+          [ngClass]="infringementForm.controls.description.invalid ? 'is-invalid': 'is-valid'"
+          formControlName="description"
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="Verstoss">
+        <div *ngIf="infringementForm.invalid" class="text-danger mt-1">
+          Verstoss darf nicht leer sein
+        </div>
+      </div>
+      <button [disabled]="infringementForm.invalid" type="submit" class="btn btn-outline-success">Speichern</button>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button color="warn" mat-dialog-close>Abbrechen</button>
+  </mat-dialog-actions>
+</ng-container>

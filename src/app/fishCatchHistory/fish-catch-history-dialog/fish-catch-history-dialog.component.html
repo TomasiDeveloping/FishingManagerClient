@@ -1,0 +1,63 @@
+<ng-container *ngIf="statistic">
+  <h1 mat-dialog-title>{{statistic.licenceName}}</h1>
+  <mat-dialog-content>
+    <p>Inhaber: {{statistic.fullName}}</p>
+    <p>Jahr: {{statistic.year}}</p>
+    <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{statistic.year}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{statistic.licenceName}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <!--    Panel for each month-->
+      <mat-expansion-panel *ngFor="let month of statistic.statistic.months">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Monat
+          </mat-panel-title>
+          <mat-panel-description>
+            {{month.month}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--      Panel for each day-->
+        <mat-expansion-panel *ngFor="let day of month.days">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Tag
+            </mat-panel-title>
+            <mat-panel-description>
+              {{day.day}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Ausgeübte Stunden: {{day.hour}}</p>
+          <h3>Fänge</h3>
+          <!--        Table for each catch-->
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Fischart</th>
+              <th scope="col">Anzahl</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fishCatch of day.fishCatches">
+              <td>{{fishCatch.fish}}</td>
+              <td>{{fishCatch.number}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-expansion-panel>
+    </mat-expansion-panel>
+    </mat-accordion>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button (click)="onCurrentDay()" mat-button>Aktueller Tageseintrag</button>
+    <button mat-button mat-dialog-close>Schliessen</button>
+  </mat-dialog-actions>
+</ng-container>

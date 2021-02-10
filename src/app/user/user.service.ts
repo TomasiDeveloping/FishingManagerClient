@@ -31,6 +31,10 @@ export class UserService {
     );
   }
 
+  updateUser(userId: number, user: User): Observable<User> {
+    return this.http.put<User>(this.baseUrl + 'users/' + userId, user);
+  }
+
   login(login: Login): Observable<AppUser> {
     return this.http.post<AppUser>(this.baseUrl + 'login/login', login).pipe(
       map(user => {

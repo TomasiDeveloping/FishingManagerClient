@@ -15,4 +15,12 @@ export class FishCatchHistoryService {
   getStatisticByUserId(userId: number): Observable<Statistic[]> {
     return this.http.get<Statistic[]>(this.baseUrl + 'users/statistics/' + userId);
   }
+
+  getStatisticByLicenceId(licenceId: number): Observable<Statistic> {
+    return this.http.get<Statistic>(this.baseUrl + 'statistics/licence/' + licenceId);
+  }
+
+  updateStatistic(statisticId: number, statistic: Statistic): Observable<Statistic> {
+    return this.http.put<Statistic>(this.baseUrl + 'statistics/' + statisticId, statistic);
+  }
 }

@@ -2,6 +2,7 @@
   <div class="card mb-4">
     <h3 class="card-header">{{user.firstName}} {{user.lastName}}</h3>
     <div class="card-body">
+      <img src="./assets/images/user.png" class="img-thumbnail rounded float-right" alt="{{user.firstName}}">
       <p class="card-text">{{user.address.street}}</p>
       <p class="card-text">{{user.address.zip}} {{user.address.city}}</p>
       <hr>
@@ -10,25 +11,30 @@
       <mat-checkbox color="primary" [disabled]="true" [checked]="user.active">Aktiv</mat-checkbox>
       <p class="card-text">Plattform Recht: {{user.rightName}}</p>
       <h4>Verstosse</h4>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Erfasst von</th>
-          <th scope="col">Datum</th>
-          <th scope="col">Beschreibung</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Peter Müller</td>
-          <td>01.01.2021</td>
-          <td>Mit Wiederhaken geangelt</td>
-        </tr>
-        </tbody>
-      </table>
+      <ng-container *ngIf="infringements && infringements.length > 0">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Erfasst von</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Beschreibung</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let infringement of infringements">
+            <td>{{infringement.creatorName}}</td>
+            <td>{{infringement.createdAt | date: 'dd.MM.yyyy HH:mm.ss'}}</td>
+            <td>{{infringement.description}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="infringements && infringements.length <= 0">
+        <h2>Keine Verstosse</h2>
+      </ng-container>
       <div class="buttons">
-        <button class="btn btn-outline-success">Verstoss eintragen</button>
-        <button class="btn btn-outline-danger">User sperren</button>
+        <button (click)="onAddInfringement()" class="btn btn-outline-success">Verstoss eintragen</button>
+        <button (click)="onLockUser()" class="btn btn-outline-danger">User sperren</button>
       </div>
 
     </div>

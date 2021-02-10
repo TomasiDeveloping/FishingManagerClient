@@ -1,0 +1,24 @@
+<ng-container *ngIf="currentDay">
+  <h1 mat-dialog-title></h1>
+  <mat-dialog-content>
+    <p>Tag: {{currentDay.day}}</p>
+    <p>Ausgeübte Stunden: {{currentDay.hour}}</p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Fischart</th>
+        <th scope="col">Anzahl</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let fishCatch of currentDay.fishCatches">
+        <td>{{fishCatch.fish}}</td>
+        <td>{{fishCatch.number}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Schliessen</button>
+  </mat-dialog-actions>
+</ng-container>

@@ -3,6 +3,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.img-thumbnail {
+  max-height: 120px;
+}
 @media (max-width: 377px) {
   .buttons > button:last-child {
     margin-top: 20px;

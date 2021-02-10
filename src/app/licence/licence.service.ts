@@ -15,4 +15,8 @@ export class LicenceService {
   getLicenceByUserId(userId: number): Observable<Licence[]> {
     return this.http.get<Licence[]>(this.baseUrl + 'users/licences/' + userId);
   }
+
+  getLicenceById(licenceId: number): Observable<Licence> {
+    return this.http.get<Licence>(this.baseUrl + 'licences/' + licenceId);
+  }
 }
