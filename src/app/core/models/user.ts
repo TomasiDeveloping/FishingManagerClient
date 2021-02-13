@@ -20,3 +20,7 @@ export interface AppUser {
   token: string;
 }
 
+export interface ChangePassword {
+  userId: number;
+  password: string;
+}

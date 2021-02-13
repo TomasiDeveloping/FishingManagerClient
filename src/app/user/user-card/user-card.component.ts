@@ -74,6 +74,10 @@ export class UserCardComponent implements OnInit, OnChanges {
       cancelButtonText: 'Abbrechen'
     }).then((result) => {
       if (result.isConfirmed) {
+        if (this.user.rightName === 'Administrator' || this.user.rightName === 'System-Admin') {
+          Swal.fire('Admin User', 'Administrator können nicht gesperrt werden', 'info').then();
+          return;
+        }
         if (environment.isTestMode) {
           Swal.fire('Im Testmodus kann kein User gesperrt werden').then();
         } else {

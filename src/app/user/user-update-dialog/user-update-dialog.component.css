@@ -1,0 +1,13 @@
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+@media (max-width: 510px) {
+  .buttons {
+    flex-direction: column;
+  }
+  #changePassword {
+    margin-bottom: 20px;
+  }
+}

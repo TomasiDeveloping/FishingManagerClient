@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
-import {AppUser, User} from '../core/models/user';
+import {AppUser, ChangePassword, User} from '../core/models/user';
 import {map} from 'rxjs/operators';
 import {Login} from '../core/models/login';
 import {Router} from '@angular/router';
@@ -31,8 +31,16 @@ export class UserService {
     );
   }
 
+  checkUserPassword(userId: number, password: string): Observable<boolean> {
+    return this.http.post<boolean>(this.baseUrl + 'users/' + userId + '/checkPassword', password);
+  }
+
   updateUser(userId: number, user: User): Observable<User> {
     return this.http.put<User>(this.baseUrl + 'users/' + userId, user);
+  }
+
+  changeUserPassword(changePassword: ChangePassword): Observable<boolean> {
+    return this.http.post<boolean>(this.baseUrl + 'users/changePassword', changePassword);
   }
 
   login(login: Login): Observable<AppUser> {
@@ -44,6 +52,9 @@ export class UserService {
         }
       })
     );
+  }
+  setCurrentUser(user: User): void {
+    this.currentUserSource.next(user);
   }
 
   logout(): void{

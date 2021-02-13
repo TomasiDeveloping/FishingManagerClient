@@ -35,6 +35,7 @@ import { FishCatchHistoryDialogComponent } from './fishCatchHistory/fish-catch-h
 import { CurrentDayStatisticDialogComponent } from './supervisor/current-day-statistic-dialog/current-day-statistic-dialog.component';
 import { InsertInfringementDialogComponent } from './infringement/insert-infringement-dialog/insert-infringement-dialog.component';
 import { FishCatchHistoryInsertDialogComponent } from './fishCatchHistory/fish-catch-history-insert-dialog/fish-catch-history-insert-dialog.component';
+import { UserUpdateDialogComponent } from './user/user-update-dialog/user-update-dialog.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { FishCatchHistoryInsertDialogComponent } from './fishCatchHistory/fish-c
     CurrentDayStatisticDialogComponent,
     InsertInfringementDialogComponent,
     FishCatchHistoryInsertDialogComponent,
+    UserUpdateDialogComponent,
   ],
   imports: [
     BrowserModule,

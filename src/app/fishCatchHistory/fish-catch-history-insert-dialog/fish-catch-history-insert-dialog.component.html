@@ -12,44 +12,48 @@
           <input id="month" type="text" formControlName="month" class="form-control" readonly>
         </div>
       </div>
-      <div class="form-group">
-        <label for="hour">Stunden</label>
-        <input id="hour" type="text" formControlName="hour" class="form-control">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="hour">Stunden</label>
+          <select id="hour" formControlName="hour" class="form-control">
+            <option *ngFor="let hour of hours" [ngValue]="hour">{{hour}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="minutes">Minuten</label>
+          <select id="minutes" formControlName="minutes" class="form-control">
+            <option *ngFor="let minute of minutes" [ngValue]="minute">{{minute}}</option>
+          </select>
+        </div>
       </div>
-
-
-      <ng-container formArrayName="fishs">
-        <div *ngFor="let f of fishs.controls; let i=index">
+      <ng-container formArrayName="fishSpecies">
+        <div *ngFor="let f of fishSpecies.controls; let i=index">
 
           <ng-container [formGroupName]="i">
-            <div class="form-group">
-              <label for="fish">Fischart</label>
-              <select id="fish" formControlName="fish" class="form-control">
-                <option *ngFor="let fish of fish" [ngValue]="fish">{{fish}}</option>
-                <option [ngValue]="'other'">Andere</option>
-              </select>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="fish">Fischart</label>
+                <select id="fish" formControlName="fish" class="form-control">
+                  <option *ngFor="let item of fish" [ngValue]="item">{{item}}</option>
+                  <option [ngValue]="'other'">Andere</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="number">Anzahl</label>
+                <input id="number" min="1" type="number" formControlName="number" class="form-control">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="number">Anzahl</label>
-              <input id="number" type="number" formControlName="number" class="form-control">
+            <div class="form-group" *ngIf="f.get('fish').value === 'other'">
+              <label for="other">Fischart</label>
+              <input id="other" type="text" formControlName="other" class="form-control">
+              <small class="form-text text-muted">Wenn anderer Fisch bitte Fischart eintragen</small>
             </div>
           </ng-container>
         </div>
-
-
-
       </ng-container>
-      <button type="button" (click)="addFish()" class="btn btn-success">Add</button>
+      <button type="button" (click)="addFish()" class="btn btn-success">Weitere Fischart</button>
 
-
-
-      <!--      <div class="form-group" *ngIf="statisticForm.controls.fish.value === 'other'">-->
-      <!--        <label for="other">Fischart</label>-->
-      <!--        <input id="other" type="text" formControlName="other" class="form-control">-->
-      <!--        <small class="form-text text-muted">Wenn anderer Fisch bitte Fischart eintragen</small>-->
-      <!--      </div>-->
-
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between mt-4">
         <button type="submit" class="btn btn-primary">Speichern</button>
         <button (click)="onClose()" type="button" class="btn btn-danger">Abbrechen</button>
       </div>
