@@ -4,25 +4,21 @@ export interface Club {
   fishingClubId: number;
   name: string;
   address: Address;
-  rules: {
-    Regeln: {
-      Regel: string[];
-    }
-  };
-  fishSpecies: {
-    FishArten: {
-      Fisch: Fish[];
-    }
-  };
+  rules: Rules[];
+  fishSpecies: Fish[];
   website: string;
   pictureUrl: string;
 }
 
+interface Rules {
+  rule: string;
+}
+
 interface Fish {
-  Name: string;
-  Schonmass: string;
-  SchonZeitVon: string;
-  SchonZeitBis: string;
+  closedSeasonEnd: string;
+  closedSeasonStart: string;
+  fishSpecie: string;
+  minimumSize: string;
 }
 
 

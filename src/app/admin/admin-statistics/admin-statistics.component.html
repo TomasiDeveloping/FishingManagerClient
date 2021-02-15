@@ -1,0 +1,22 @@
+<div class="container mt-2">
+  <div>
+    <h2>Statistiken</h2>
+  </div>
+  <ejs-grid
+    #grid
+    [allowResizing]="true"
+    [pageSettings]="{pageSize: 10}"
+    [toolbar]="['Search']"
+    [dataSource]="statistics">
+    <e-columns>
+      <e-column field="licenceName" headerText="Lizenz" textAlign="left" width="120"></e-column>
+      <e-column field="fullName" headerText="Inhaber" textAlign="left" width="120"></e-column>
+      <e-column field="year" headerText="Jahr" textAlign="left" width="120"></e-column>
+      <e-column headerText="Detail" textAlign="left" width="120">
+        <ng-template #template let-data>
+          <i (click)="onStatistic(data.licenceId)" class="fa fa-bar-chart" aria-hidden="true" style="cursor: pointer"></i>
+        </ng-template>
+      </e-column>
+    </e-columns>
+  </ejs-grid>
+</div>

@@ -5,6 +5,8 @@ import {Club} from '../core/models/club';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {User} from '../core/models/user';
+import {Licence} from '../core/models/licence';
+import {Statistic} from '../core/models/statistic';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +32,17 @@ export class ClubService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'club/users');
   }
+
+  getLicences(): Observable<Licence[]> {
+    return this.http.get<Licence[]>(this.baseUrl + 'club/licences');
+  }
+
+  getStatistics(): Observable<Statistic[]> {
+    return this.http.get<Statistic[]>(this.baseUrl + 'club/statistics');
+  }
+
+  updateFishingClub(id: number, fishingClub: Club): Observable<Club> {
+    return this.http.put<Club>(this.baseUrl + 'club/' + id, fishingClub);
+  }
+
 }

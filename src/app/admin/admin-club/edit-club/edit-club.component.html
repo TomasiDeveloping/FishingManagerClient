@@ -1,0 +1,47 @@
+<div class="container mt-2">
+  <div>
+    <h2>Adresse bearbeiten</h2>
+  </div>
+  <ng-container *ngIf="clubForm">
+    <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="webSite">Webseite</label>
+        <input type="url" id="webSite" class="form-control" formControlName="webSite">
+      </div>
+      <div class="form-group" formGroupName="address">
+        <label for="phone">Telefon</label>
+        <input type="text" id="phone" class="form-control" formControlName="phone">
+      </div>
+      <div class="form-group" formGroupName="address">
+        <label for="title">Anrede</label>
+        <input type="text" id="title" class="form-control" formControlName="title">
+      </div>
+      <div class="form-group" formGroupName="address">
+        <label for="street">Strasse</label>
+        <input type="text" id="street" class="form-control" formControlName="street">
+      </div>
+      <div class="form-group" formGroupName="address">
+        <label for="addressAddition">Adresszusatz</label>
+        <input type="text" id="addressAddition" class="form-control" formControlName="addressAddition">
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6" formGroupName="address">
+        <label for="zip">PLZ</label>
+        <input type="number" id="zip" class="form-control" formControlName="zip">
+      </div>
+      <div class="form-group col-md-6" formGroupName="address">
+        <label for="city">Ort</label>
+        <input type="text" id="city" class="form-control" formControlName="city">
+      </div>
+      </div>
+
+      <div class="d-flex justify-content-end mb-4">
+        <button [disabled]="clubForm.invalid" type="submit" class="btn btn-success">Speichern</button>
+      </div>
+    </form>
+  </ng-container>
+</div>

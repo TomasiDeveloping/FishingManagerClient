@@ -10,11 +10,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let fish of fishingClub.fishSpecies.FishArten.Fisch">
-    <th scope="row">{{fish.Name}}</th>
-    <td>{{fish.Schonmass}}</td>
-    <td>{{fish.SchonZeitVon}}</td>
-    <td>{{fish.SchonZeitBis}}</td>
+  <tr *ngFor="let fish of fishingClub.fishSpecies">
+    <th scope="row">{{fish.fishSpecie}}</th>
+    <td>{{fish.minimumSize}}</td>
+    <td>{{fish.closedSeasonStart}}</td>
+    <td>{{fish.closedSeasonEnd}}</td>
   </tr>
   </tbody>
 </table>

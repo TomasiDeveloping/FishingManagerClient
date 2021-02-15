@@ -1,0 +1,50 @@
+<div class="container mt-2">
+  <div>
+    <h2>Fische und Schonzeiten bearbeiten</h2>
+  </div>
+  <ng-container *ngIf="clubForm">
+    <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+      <ng-container formArrayName="fishSpecies">
+        <div *ngFor="let f of fishSpecies.controls; let i=index">
+          <ng-container [formGroupName]="i">
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Fischart</label>
+                <input class="form-control" id="name" formControlName="fishSpecie">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="schonMass">Schonmass</label>
+                <div class="input-group mb-6">
+
+                  <input class="form-control" id="schonMass" formControlName="minimumSize">
+                  <div class="input-group-append">
+                    <span class="input-group-text">cm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="timeFrom">Schonzeit von</label>
+                <input class="form-control" id="timeFrom" formControlName="closedSeasonStart">
+                <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder keine</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="timeTo">Schonzeit bis</label>
+                <input class="form-control" id="timeTo" formControlName="closedSeasonEnd">
+                <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder keine</small>
+              </div>
+            </div>
+            <hr>
+          </ng-container>
+        </div>
+      </ng-container>
+      <button class="btn btn-success mb-2" type="button" (click)="onAddFish()">Fischart hinzufügen</button>
+      <div class="d-flex justify-content-end mb-4">
+        <button [disabled]="clubForm.invalid" type="submit" class="btn btn-success">Speichern</button>
+      </div>
+    </form>
+  </ng-container>
+</div>

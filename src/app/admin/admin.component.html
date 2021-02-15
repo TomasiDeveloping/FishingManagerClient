@@ -1,1 +1,19 @@
-<p>admin works!</p>
+<div class="container">
+  <div>
+    <h1>Administrator bereich</h1>
+  </div>
+<mat-tab-group>
+  <mat-tab label="Users" class="tab1">
+    <app-admin-users></app-admin-users>
+  </mat-tab>
+  <mat-tab label="Lizenzen">
+    <app-admin-licence></app-admin-licence>
+  </mat-tab>
+  <mat-tab label="Statistik">
+    <app-admin-statistics></app-admin-statistics>
+  </mat-tab>
+  <mat-tab label="Fischerverein">
+    <app-admin-club></app-admin-club>
+  </mat-tab>
+</mat-tab-group>
+</div>

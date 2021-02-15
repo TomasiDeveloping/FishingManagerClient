@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
 import {ToastrService} from 'ngx-toastr';
 import Swal, {SweetAlertResult} from 'sweetalert2';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-user-update-dialog',
@@ -17,12 +18,15 @@ export class UserUpdateDialogComponent implements OnInit {
   newPassword: string;
   changePassword: ChangePassword;
   changeAddress = false;
+  isAdmin = false;
+  isTestMode = environment.isTestMode;
 
   constructor(private dialogRef: MatDialogRef<UserUpdateDialogComponent>,
               private userService: UserService,
               private toastr: ToastrService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.currentUser = data;
+    this.currentUser = data.user;
+    this.isAdmin = data.isAdmin;
   }
 
   ngOnInit(): void {
@@ -31,6 +35,9 @@ export class UserUpdateDialogComponent implements OnInit {
       password: string;
       userId: number;
     };
+    if (this.isAdmin) {
+      this.changeAddress = true;
+    }
     this.initUserForm();
   }
 
@@ -57,15 +64,18 @@ export class UserUpdateDialogComponent implements OnInit {
 
   onSubmit(): void {
     this.onCancel(false);
-    console.log(this.userForm.value);
-    this.userService.updateUser(this.currentUser.userId, this.userForm.value).subscribe(result => {
-      if (result) {
-        this.userService.setCurrentUser(result);
-        this.toastr.success('Erfolgreich geändert');
-      }
-    }, error => {
-      this.toastr.error(error.error);
-    });
+    if (this.currentUser.userId <= 0) {
+      this.insertUser();
+    } else {
+      this.userService.updateUser(this.currentUser.userId, this.userForm.value).subscribe(result => {
+        if (result) {
+          this.userService.setCurrentUser(result);
+          this.toastr.success('Erfolgreich geändert');
+        }
+      }, error => {
+        this.toastr.error(error.error);
+      });
+    }
   }
 
   onChangePassword(): void {
@@ -94,21 +104,32 @@ export class UserUpdateDialogComponent implements OnInit {
       if (!result.dismiss) {
         this.changePassword.userId = this.currentUser.userId;
         this.changePassword.password = this.newPassword;
-        this.userService.changeUserPassword(this.changePassword).subscribe(response => {
-          if (response) {
-            Swal.fire('Neuse Passwort',
-              'Passwort erfolgreich geändert. Sie werden automatisch ausgelogt',
-              'success')
-              .then(() => this.onCancel(true));
-          }
-        }, error => {
-          Swal.fire('Neuse Passwort', error.error, 'error').then();
-        });
+        if (environment.isTestMode) {
+          Swal.fire('Neues Passwort',
+            'Im Testmodus kann das Passwort nicht geändert werden',
+            'info').then(() => this.onCancel(false));
+        } else {
+          this.userService.changeUserPassword(this.changePassword).subscribe(response => {
+            if (response) {
+              Swal.fire('Neuse Passwort',
+                'Passwort erfolgreich geändert. Sie werden automatisch ausgelogt',
+                'success')
+                .then(() => this.onCancel(true));
+            }
+          }, error => {
+            Swal.fire('Neuse Passwort', error.error, 'error').then();
+          });
+        }
       }
     });
   }
 
   onCancel(logout: boolean): void {
     this.dialogRef.close(logout);
+  }
+
+  private insertUser(): void {
+    console.log(this.userForm.value);
+    // TODO Insert new User
   }
 }

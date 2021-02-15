@@ -12,6 +12,10 @@ export class LicenceService {
 
   constructor(private http: HttpClient) { }
 
+  getLicences(): Observable<Licence[]> {
+    return this.http.get<Licence[]>(this.baseUrl + 'licences');
+  }
+
   getLicenceByUserId(userId: number): Observable<Licence[]> {
     return this.http.get<Licence[]>(this.baseUrl + 'users/licences/' + userId);
   }

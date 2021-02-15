@@ -1,0 +1,29 @@
+<div class="container mt-2">
+  <div>
+    <h2>Regeln bearbeiten</h2>
+  </div>
+  <ng-container *ngIf="clubForm">
+    <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+      <div class="form-grouo">
+        <label for="externRules">Vorschriften link</label>
+        <input type="url" class="form-control" id="externRules">
+      </div>
+      <ng-container formArrayName="rules">
+        <div *ngFor="let f of rules.controls; let i=index">
+          <ng-container [formGroupName]="i">
+              <div class="form-group">
+                <label for="rule">Regel</label>
+                <textarea class="form-control" id="rule" rows="3" formControlName="rule"></textarea>
+              </div>
+            <hr>
+          </ng-container>
+        </div>
+      </ng-container>
+      <button class="btn btn-success mb-2" type="button" (click)="onAddRule()">Regel hinzufügen</button>
+      <div class="d-flex justify-content-end mb-4">
+        <button [disabled]="clubForm.invalid" type="submit" class="btn btn-success">Speichern</button>
+      </div>
+    </form>
+  </ng-container>
+</div>
+

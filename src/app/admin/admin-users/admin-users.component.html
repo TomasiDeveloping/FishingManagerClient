@@ -1,0 +1,104 @@
+<div class="container mt-2">
+  <div>
+    <h2>Registrirte Benutzer</h2>
+  </div>
+  <div class="mb-2" style="cursor: pointer" (click)="onAddUser()">
+    <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Benutzer hinzufügen
+  </div>
+
+  <ejs-grid
+    #grid
+    [dataSource]="users"
+    [childGrid]="childGrid"
+    [pageSettings]="{pageSize: 10}"
+    width='100%'
+    height='100%'
+    [allowPaging]="true"
+    [allowExcelExport]="true"
+    [toolbar]="['ExcelExport', 'Search']"
+    [allowFiltering]="true"
+    [allowResizing]="true"
+    [filterSettings]="{type: 'Excel'}"
+    (recordDoubleClick)="onEditUser($event)"
+    (toolbarClick)='toolbarClick($event)'>
+    <e-columns>
+      <e-column
+        field="userId"
+        headerText="UserID"
+        textAlign="left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field='firstName'
+        headerText='Vorname'
+        textAlign='Left'
+        width="120"
+        [allowFiltering]="false">
+      </e-column>
+      <e-column
+        field='lastName'
+        headerText='Nachname'
+        textAlign="Left"
+        width="120"
+        [allowFiltering]="false">
+      </e-column>
+      <e-column
+        field='email'
+        headerText='Email'
+        textAlign='Left'
+        width="120"
+        [allowFiltering]="false">
+      </e-column>
+      <e-column
+        field='active'
+        headerText='Aktiv'
+        [displayAsCheckBox]="true"
+        width="80"
+        textAlign='Left'>
+      </e-column>
+      <e-column
+        field='rightName'
+        headerText='Recht'
+        width="120"
+        textAlign='Left'
+        [allowFiltering]="false">
+      </e-column>
+      <e-column
+        field="address.title"
+        headerText="Anrede"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field="address.street"
+        headerText="Strasse"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field="address.addressAddition"
+        headerText="Adresszusatz"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field="address.zip"
+        headerText="PLZ"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field="address.city"
+        headerText="Ort"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+      <e-column
+        field="address.phone"
+        headerText="Telefon"
+        textAlign="Left"
+        [visible]="false">
+      </e-column>
+    </e-columns>
+  </ejs-grid>
+</div>

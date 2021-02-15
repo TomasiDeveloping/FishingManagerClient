@@ -137,8 +137,8 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
   getFishingClub(): void {
     this.clubService.getFishingClub().subscribe(result => {
       this.fishingClub = result;
-      result.fishSpecies.FishArten.Fisch.forEach(a => {
-        this.fish.push(a.Name);
+      result.fishSpecies.forEach(a => {
+        this.fish.push(a.fishSpecie);
       });
       this.initForm();
     });

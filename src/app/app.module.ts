@@ -36,6 +36,23 @@ import { CurrentDayStatisticDialogComponent } from './supervisor/current-day-sta
 import { InsertInfringementDialogComponent } from './infringement/insert-infringement-dialog/insert-infringement-dialog.component';
 import { FishCatchHistoryInsertDialogComponent } from './fishCatchHistory/fish-catch-history-insert-dialog/fish-catch-history-insert-dialog.component';
 import { UserUpdateDialogComponent } from './user/user-update-dialog/user-update-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import {
+  DetailRowService,
+  ExcelExportService,
+  FilterService,
+  GridModule,
+  PageService,
+  ResizeService,
+  ToolbarService
+} from '@syncfusion/ej2-angular-grids';
+import { AdminLicenceComponent } from './admin/admin-licence/admin-licence.component';
+import { AdminStatisticsComponent } from './admin/admin-statistics/admin-statistics.component';
+import { AdminClubComponent } from './admin/admin-club/admin-club.component';
+import { EditClubComponent } from './admin/admin-club/edit-club/edit-club.component';
+import { EditFishSpeciesComponent } from './admin/admin-club/edit-fish-species/edit-fish-species.component';
+import { EditRulesComponent } from './admin/admin-club/edit-rules/edit-rules.component';
 
 
 @NgModule({
@@ -59,6 +76,13 @@ import { UserUpdateDialogComponent } from './user/user-update-dialog/user-update
     InsertInfringementDialogComponent,
     FishCatchHistoryInsertDialogComponent,
     UserUpdateDialogComponent,
+    AdminUsersComponent,
+    AdminLicenceComponent,
+    AdminStatisticsComponent,
+    AdminClubComponent,
+    EditClubComponent,
+    EditFishSpeciesComponent,
+    EditRulesComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,11 +101,13 @@ import { UserUpdateDialogComponent } from './user/user-update-dialog/user-update
     MatAutocompleteModule,
     MatInputModule,
     MatDialogModule,
+    MatTabsModule,
+    GridModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     })
   ],
-  providers: [],
+  providers: [PageService, ToolbarService, ExcelExportService, DetailRowService, FilterService, ResizeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

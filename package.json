@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.1.1",
     "@angular/platform-browser-dynamic": "~11.1.1",
     "@angular/router": "~11.1.1",
+    "@syncfusion/ej2-angular-grids": "^18.4.42",
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",

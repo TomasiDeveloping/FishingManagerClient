@@ -44,7 +44,7 @@ export class NavigationComponent implements OnInit {
     const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
       width: '80%',
       height: 'auto',
-      data: this.currentUser
+      data: {user: this.currentUser, isAdmin: false}
     });
     dialogRef.afterClosed().subscribe(logout => {
       if (logout === true) {
