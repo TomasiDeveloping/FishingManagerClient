@@ -12,11 +12,11 @@ import {Address} from '../../core/models/address';
   styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent implements OnInit {
+
+  constructor(private clubService: ClubService, private dialog: MatDialog) { }
   @ViewChild('grid', {static: true}) public grid: GridComponent;
   users: User[];
   public childGrid: GridModel;
-
-  constructor(private clubService: ClubService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -64,28 +64,48 @@ export class AdminUsersComponent implements OnInit {
   }
 
   onEditUser(event: RecordDoubleClickEventArgs): void {
-    this.dialog.open(UserUpdateDialogComponent, {
+    const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
       width: '80%',
       height: 'auto',
       data: { user: event.rowData as User, isAdmin: true }
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUsers();
+      }
+    );
   }
 
   onAddUser(): void {
+    const user = this.newUser();
+    user.address = this.newAddress();
+    const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
+      width: '80%',
+      height: 'auto',
+      data: { user, isAdmin: true}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUsers();
+    });
+  }
+
+  newUser(): User {
     // tslint:disable-next-line:new-parens
-    const user: User = new class implements User {
+    return new class implements User {
       PictureUrl = '';
       active = true;
       address: Address;
-      email =  '';
+      email = '';
       firstName = '';
       lastName = '';
       rightId = 0;
       rightName = '';
       userId = 0;
     };
+  }
+
+  newAddress(): Address {
     // tslint:disable-next-line:new-parens
-    user.address = new class implements Address {
+    return new class implements Address {
       addressAddition = '';
       city = '';
       id = 0;
@@ -94,10 +114,5 @@ export class AdminUsersComponent implements OnInit {
       title = '';
       zip = 0;
     };
-    this.dialog.open(UserUpdateDialogComponent, {
-      width: '80%',
-      height: 'auto',
-      data: { user, isAdmin: true}
-    });
   }
 }

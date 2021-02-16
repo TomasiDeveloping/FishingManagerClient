@@ -1,11 +1,15 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ChangePassword, User} from '../../core/models/user';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AsyncValidatorFn, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
 import {ToastrService} from 'ngx-toastr';
 import Swal, {SweetAlertResult} from 'sweetalert2';
 import {environment} from '../../../environments/environment';
+import {Right} from '../../core/models/right';
+import {ClubService} from '../../club/club.service';
+import {of, timer} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-update-dialog',
@@ -14,6 +18,7 @@ import {environment} from '../../../environments/environment';
 })
 export class UserUpdateDialogComponent implements OnInit {
   currentUser: User;
+  rights: Right[] = [];
   userForm: FormGroup;
   newPassword: string;
   changePassword: ChangePassword;
@@ -23,6 +28,7 @@ export class UserUpdateDialogComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<UserUpdateDialogComponent>,
               private userService: UserService,
+              private clubService: ClubService,
               private toastr: ToastrService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.currentUser = data.user;
@@ -37,8 +43,35 @@ export class UserUpdateDialogComponent implements OnInit {
     };
     if (this.isAdmin) {
       this.changeAddress = true;
+      this.getRights();
     }
     this.initUserForm();
+  }
+
+  getRights(): void {
+    this.clubService.getRights().subscribe(result => {
+      result.forEach(right => {
+        if (right.name !== 'System-Admin') {
+          this.rights.push(right);
+        }
+      });
+    });
+  }
+  validateEmailNotTaken(): AsyncValidatorFn {
+    return control => {
+      return timer(500).pipe(
+        switchMap(() => {
+          if (!control.value) {
+            return of(null);
+          }
+          return this.userService.checkEmailExists(control.value).pipe(
+            map(res => {
+              return res ? {emailExists: true} : null;
+            })
+          );
+        })
+      );
+    };
   }
 
   initUserForm(): void {
@@ -49,7 +82,9 @@ export class UserUpdateDialogComponent implements OnInit {
       pictureUrl: new FormControl(this.currentUser.PictureUrl),
       firstName: new FormControl(this.currentUser.firstName, Validators.required),
       lastName: new FormControl(this.currentUser.lastName, Validators.required),
-      email: new FormControl(this.currentUser.email, Validators.required),
+      email: new FormControl(this.currentUser.email,
+        [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
+        this.currentUser.userId <= 0 ? this.validateEmailNotTaken() : null),
       address: new FormGroup({
         id: new FormControl(this.currentUser.address.id),
         title: new FormControl(this.currentUser.address.title),
@@ -63,12 +98,12 @@ export class UserUpdateDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.onCancel(false);
     if (this.currentUser.userId <= 0) {
       this.insertUser();
     } else {
       this.userService.updateUser(this.currentUser.userId, this.userForm.value).subscribe(result => {
         if (result) {
+          this.onCancel(false);
           this.userService.setCurrentUser(result);
           this.toastr.success('Erfolgreich geändert');
         }
@@ -129,7 +164,13 @@ export class UserUpdateDialogComponent implements OnInit {
   }
 
   private insertUser(): void {
-    console.log(this.userForm.value);
-    // TODO Insert new User
+    this.userService.insertUser(this.userForm.value).subscribe(result => {
+      if (result) {
+        this.onCancel(false);
+        this.toastr.success('Neuer User ' + result.firstName + ' ' + result.lastName + ' wurde hinzugefügt');
+      }
+    }, error => {
+      this.toastr.error(error.error);
+    });
   }
 }

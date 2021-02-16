@@ -3,6 +3,12 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (max-width: 510px) {
   .buttons {
     flex-direction: column;

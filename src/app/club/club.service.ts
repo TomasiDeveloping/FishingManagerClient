@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import {User} from '../core/models/user';
 import {Licence} from '../core/models/licence';
 import {Statistic} from '../core/models/statistic';
+import {Right} from '../core/models/right';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class ClubService {
 
   getStatistics(): Observable<Statistic[]> {
     return this.http.get<Statistic[]>(this.baseUrl + 'club/statistics');
+  }
+
+  getRights(): Observable<Right[]> {
+    return this.http.get<Right[]>(this.baseUrl + 'club/rights');
   }
 
   updateFishingClub(id: number, fishingClub: Club): Observable<Club> {

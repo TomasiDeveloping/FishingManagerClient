@@ -35,6 +35,14 @@ export class UserService {
     return this.http.post<boolean>(this.baseUrl + 'users/' + userId + '/checkPassword', password);
   }
 
+  checkEmailExists(email: string): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl + 'users/emailexists?email=' + email);
+  }
+
+  insertUser(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl + 'users', user);
+  }
+
   updateUser(userId: number, user: User): Observable<User> {
     return this.http.put<User>(this.baseUrl + 'users/' + userId, user);
   }

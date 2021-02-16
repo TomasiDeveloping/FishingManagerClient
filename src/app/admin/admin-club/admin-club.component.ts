@@ -89,8 +89,4 @@ export class AdminClubComponent implements OnInit {
       closedSeasonEnd: new FormControl(''),
     });
   }
-
-  onSubmit(): void {
-    console.log(this.clubForm.value);
-  }
 }
