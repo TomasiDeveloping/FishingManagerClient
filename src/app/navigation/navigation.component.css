@@ -4,3 +4,6 @@ a.dropdown-item {
 .btn-group > button {
   color: black;
 }
+.container {
+  min-height: calc(100vh - 50px);
+}

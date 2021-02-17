@@ -3,11 +3,13 @@
   <form>
     <mat-form-field appearance="outline">
       <mat-label>Users</mat-label>
-      <input type="text"
-             placeholder="User"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
+      <label>
+        <input type="text"
+               placeholder="User"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+      </label>
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelectChange($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option.firstName}} {{option.lastName}}

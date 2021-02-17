@@ -53,6 +53,10 @@ import { AdminClubComponent } from './admin/admin-club/admin-club.component';
 import { EditClubComponent } from './admin/admin-club/edit-club/edit-club.component';
 import { EditFishSpeciesComponent } from './admin/admin-club/edit-fish-species/edit-fish-species.component';
 import { EditRulesComponent } from './admin/admin-club/edit-rules/edit-rules.component';
+import { LicenceEditComponent } from './licence/licence-edit/licence-edit.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { FooterComponent } from './core/footer/footer.component';
+import { ClubRulesComponent } from './club/club-rules/club-rules.component';
 
 
 @NgModule({
@@ -83,6 +87,9 @@ import { EditRulesComponent } from './admin/admin-club/edit-rules/edit-rules.com
     EditClubComponent,
     EditFishSpeciesComponent,
     EditRulesComponent,
+    LicenceEditComponent,
+    FooterComponent,
+    ClubRulesComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +100,7 @@ import { EditRulesComponent } from './admin/admin-club/edit-rules/edit-rules.com
     HttpClientModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     MomentModule.forRoot(),
     MatExpansionModule,
     MatCheckboxModule,

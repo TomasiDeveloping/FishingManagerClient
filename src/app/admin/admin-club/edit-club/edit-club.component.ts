@@ -21,7 +21,7 @@ export class EditClubComponent implements OnInit {
   onSubmit(): void {
     this.clubService.updateFishingClub(this.fishingClub.fishingClubId, this.clubForm.value).subscribe(result => {
       if (result) {
-        this.toastr.success('Erfolgreich gespeichert');
+        this.toastr.success('Adresse erfolgreich geändert');
       }
     }, error => {
       this.toastr.error(error.error);

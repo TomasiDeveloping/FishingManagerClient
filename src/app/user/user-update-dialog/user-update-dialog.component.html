@@ -1,6 +1,6 @@
 <ng-container *ngIf="currentUser">
   <h1 mat-dialog-title *ngIf="currentUser.userId > 0">{{currentUser.firstName}} {{currentUser.lastName}} bearbeiten</h1>
-  <h1 mat-dialog-title *ngIf="currentUser.userId <= 0">Neuer User hinzufègen</h1>
+  <h1 mat-dialog-title *ngIf="currentUser.userId <= 0">Neuer User hinzufügen</h1>
   <mat-dialog-content>
     <div class="container">
       <div class="buttons" *ngIf="!changeAddress">
@@ -25,7 +25,7 @@
                 'is-valid': userForm.controls.firstName.valid
               }"
               formControlName="firstName">
-            <div class="form-control-feedback"
+            <div class="invalid-feedback"
                  *ngIf="userForm.controls.firstName.errors &&
                  (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">
               <p *ngIf="userForm.controls.firstName.errors.required">Vorname ist ein Pflichtfeld</p>
@@ -43,7 +43,7 @@
                 'is-valid': userForm.controls.lastName.valid
               }"
               formControlName="lastName">
-            <div class="form-control-feedback"
+            <div class="invalid-feedback"
                  *ngIf="userForm.controls.lastName.errors &&
                  (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">
               <p *ngIf="userForm.controls.lastName.errors.required">Nachname ist ein Pflichtfeld</p>
@@ -64,7 +64,7 @@
               }"
               formControlName="email"
               [readOnly]="isTestMode">
-            <div class="form-control-feedback"
+            <div class="invalid-feedback"
                  *ngIf="userForm.controls.email.errors && (userForm.controls.email.dirty || userForm.controls.email.touched)">
               <p *ngIf="userForm.controls.email.errors.required">E-Mail ist ein Pflichtfeld</p>
               <p *ngIf="userForm.controls.email.errors.pattern">Ungültige E-Mail</p>
@@ -83,7 +83,7 @@
                 'is-valid': userForm.get('address').get('phone').valid
               }"
               formControlName="phone">
-            <div class="form-control-feedback"
+            <div class="invalid-feedback"
                  *ngIf="userForm.get('address').get('phone').errors &&
                  (userForm.get('address').get('phone').dirty || userForm.get('address').get('phone').touched)">
               <p *ngIf="userForm.get('address').get('phone').errors.required">Telefon ist ein Pflichtfeld</p>
@@ -124,7 +124,7 @@
                 'is-valid': userForm.get('address').get('street').valid
               }"
               formControlName="street">
-            <div class="form-control-feedback"
+            <div class="invalid-feedback"
                  *ngIf="userForm.get('address').get('street').errors &&
                  (userForm.get('address').get('street').dirty || userForm.get('address').get('street').touched)">
               <p *ngIf="userForm.get('address').get('street').errors.required">Strasse ist ein Pflichtfeld</p>
@@ -147,7 +147,7 @@
                 'is-valid': userForm.get('address').get('zip').valid
               }"
                 formControlName="zip">
-              <div class="form-control-feedback"
+              <div class="invalid-feedback"
                    *ngIf="userForm.get('address').get('zip').errors &&
                    (userForm.get('address').get('zip').dirty || userForm.get('address').get('zip').touched)">
                 <p *ngIf="userForm.get('address').get('zip').errors.required">PLZ ist ein Pflichtfeld</p>
@@ -165,7 +165,7 @@
                 'is-valid': userForm.get('address').get('city').valid
               }"
                 formControlName="city">
-              <div class="form-control-feedback"
+              <div class="invalid-feedback"
                    *ngIf="userForm.get('address').get('city').errors &&
                    (userForm.get('address').get('city').dirty || userForm.get('address').get('city').touched)">
                 <p *ngIf="userForm.get('address').get('city').errors.required">Ort ist ein Pflichtfeld</p>

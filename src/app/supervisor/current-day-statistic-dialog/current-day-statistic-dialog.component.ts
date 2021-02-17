@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Days} from '../../core/models/statistic';
 
 @Component({
@@ -10,8 +10,7 @@ import {Days} from '../../core/models/statistic';
 export class CurrentDayStatisticDialogComponent implements OnInit {
   currentDay: Days;
 
-  constructor(private dialogRef: MatDialogRef<CurrentDayStatisticDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.currentDay = data;
   }
 

@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  background-color: lightgray;
+}
+.content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.content > div{
+  cursor: pointer;
+}
+.content > div:hover {
+  color: blue;
+}
+.copy {
+  display: flex;
+  justify-content: center;
+}

@@ -47,7 +47,12 @@ export class ClubService {
   }
 
   updateFishingClub(id: number, fishingClub: Club): Observable<Club> {
-    return this.http.put<Club>(this.baseUrl + 'club/' + id, fishingClub);
+    return this.http.put<Club>(this.baseUrl + 'club/' + id, fishingClub).pipe(
+      map(result => {
+        this.fishingClub = result;
+        return result;
+      })
+    );
   }
 
 }

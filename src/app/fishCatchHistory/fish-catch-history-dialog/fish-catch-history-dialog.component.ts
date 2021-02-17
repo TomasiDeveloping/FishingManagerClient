@@ -13,7 +13,7 @@ import {CurrentDayStatisticDialogComponent} from '../../supervisor/current-day-s
 export class FishCatchHistoryDialogComponent implements OnInit {
   licenceId: number;
   statistic: Statistic;
-  panelOpenState: false;
+  panelOpenState = false;
   currentDate = new Date();
 
   constructor(private fishCatchHistoryService: FishCatchHistoryService,

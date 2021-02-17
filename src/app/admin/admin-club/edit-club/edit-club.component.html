@@ -6,15 +6,43 @@
     <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" class="form-control" formControlName="name">
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          [ngClass]="{
+          'is-invalid': clubForm.controls.name.invalid &&
+          (clubForm.controls.name.dirty || clubForm.controls.name.touched),
+          'is-valid': clubForm.controls.name.valid
+          }"
+          formControlName="name">
+        <div class="invalid-feedback"
+             *ngIf="clubForm.controls.name.errors &&
+                 (clubForm.controls.name.dirty || clubForm.controls.name.touched)">
+          <p *ngIf="clubForm.controls.name.errors.required">Name ist ein Pflichtfeld</p>
+        </div>
       </div>
       <div class="form-group">
-        <label for="webSite">Webseite</label>
-        <input type="url" id="webSite" class="form-control" formControlName="webSite">
+        <label for="webSite">Webseite (optional)</label>
+        <input type="url" id="webSite" class="form-control is-valid" formControlName="webSite">
       </div>
       <div class="form-group" formGroupName="address">
         <label for="phone">Telefon</label>
-        <input type="text" id="phone" class="form-control" formControlName="phone">
+        <input
+          type="text"
+          id="phone"
+          class="form-control"
+          [ngClass]="{
+          'is-invalid': clubForm.get('address').get('phone').invalid &&
+          (clubForm.get('address').get('phone').dirty || clubForm.get('address').get('phone').touched),
+          'is-valid': clubForm.get('address').get('phone').valid
+          }"
+          formControlName="phone">
+        <div class="invalid-feedback"
+             *ngIf="clubForm.get('address').get('phone').errors &&
+                 (clubForm.get('address').get('phone').dirty || clubForm.get('address').get('phone').touched)">
+          <p *ngIf="clubForm.get('address').get('phone').errors.required">Telefon ist ein Pflichtfeld</p>
+        </div>
       </div>
       <div class="form-group" formGroupName="address">
         <label for="title">Anrede</label>
@@ -22,25 +50,67 @@
       </div>
       <div class="form-group" formGroupName="address">
         <label for="street">Strasse</label>
-        <input type="text" id="street" class="form-control" formControlName="street">
+        <input
+          type="text"
+          id="street"
+          class="form-control"
+          [ngClass]="{
+          'is-invalid': clubForm.get('address').get('street').invalid &&
+          (clubForm.get('address').get('street').dirty || clubForm.get('address').get('street').touched),
+          'is-valid': clubForm.get('address').get('street').valid
+          }"
+          formControlName="street">
+        <div class="invalid-feedback"
+             *ngIf="clubForm.get('address').get('street').errors &&
+                 (clubForm.get('address').get('street').dirty || clubForm.get('address').get('street').touched)">
+          <p *ngIf="clubForm.get('address').get('street').errors.required">Strasse ist ein Pflichtfeld</p>
+        </div>
       </div>
       <div class="form-group" formGroupName="address">
-        <label for="addressAddition">Adresszusatz</label>
-        <input type="text" id="addressAddition" class="form-control" formControlName="addressAddition">
+        <label for="addressAddition">Adresszusatz (optional)</label>
+        <input type="text" id="addressAddition" class="form-control is-valid" formControlName="addressAddition">
       </div>
       <div class="form-row">
-      <div class="form-group col-md-6" formGroupName="address">
-        <label for="zip">PLZ</label>
-        <input type="number" id="zip" class="form-control" formControlName="zip">
-      </div>
-      <div class="form-group col-md-6" formGroupName="address">
-        <label for="city">Ort</label>
-        <input type="text" id="city" class="form-control" formControlName="city">
-      </div>
+        <div class="form-group col-md-6" formGroupName="address">
+          <label for="zip">PLZ</label>
+          <input
+            type="number"
+            id="zip" class="form-control"
+            [ngClass]="{
+          'is-invalid': clubForm.get('address').get('zip').invalid &&
+          (clubForm.get('address').get('zip').dirty || clubForm.get('address').get('zip').touched),
+          'is-valid': clubForm.get('address').get('zip').valid
+          }"
+            formControlName="zip">
+          <div class="invalid-feedback"
+               *ngIf="clubForm.get('address').get('zip').errors &&
+                 (clubForm.get('address').get('zip').dirty || clubForm.get('address').get('zip').touched)">
+            <p *ngIf="clubForm.get('address').get('zip').errors.required">PLZ ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group col-md-6" formGroupName="address">
+          <label for="city">Ort</label>
+          <input
+            type="text"
+            id="city"
+            class="form-control"
+            [ngClass]="{
+          'is-invalid': clubForm.get('address').get('city').invalid &&
+          (clubForm.get('address').get('city').dirty || clubForm.get('address').get('city').touched),
+          'is-valid': clubForm.get('address').get('city').valid
+          }"
+            formControlName="city">
+          <div class="invalid-feedback"
+               *ngIf="clubForm.get('address').get('city').errors &&
+                 (clubForm.get('address').get('city').dirty || clubForm.get('address').get('city').touched)">
+            <p *ngIf="clubForm.get('address').get('city').errors.required">Ort ist ein Pflichtfeld</p>
+          </div>
+        </div>
       </div>
 
       <div class="d-flex justify-content-end mb-4">
-        <button [disabled]="clubForm.invalid" type="submit" class="btn btn-success">Speichern</button>
+        <button [disabled]="clubForm.invalid || !clubForm.dirty" type="submit" class="btn btn-success">Speichern
+        </button>
       </div>
     </form>
   </ng-container>

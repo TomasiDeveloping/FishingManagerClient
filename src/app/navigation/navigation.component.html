@@ -47,6 +47,7 @@
   <div class="container">
     <router-outlet></router-outlet>
   </div>
+  <app-footer></app-footer>
 </ng-container>
 <ng-container *ngIf="!loggedInUser">
   <app-login (login)="loginUser($event)"></app-login>

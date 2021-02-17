@@ -20,7 +20,15 @@ export class LicenceService {
     return this.http.get<Licence[]>(this.baseUrl + 'users/licences/' + userId);
   }
 
-  getLicenceById(licenceId: number): Observable<Licence> {
-    return this.http.get<Licence>(this.baseUrl + 'licences/' + licenceId);
+  insertLicence(licence: Licence): Observable<Licence> {
+    return this.http.post<Licence>(this.baseUrl + 'licences', licence);
+  }
+
+  updateLicence(licenceId: number, licence: Licence): Observable<Licence> {
+    return this.http.put<Licence>(this.baseUrl + 'licences/' + licenceId, licence);
+  }
+
+  deleteLicence(licenceId: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + 'licences/' + licenceId);
   }
 }

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ClubService} from '../../../club/club.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-fish-species',
@@ -9,7 +11,7 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 export class EditFishSpeciesComponent implements OnInit {
   @Input() clubForm: FormGroup;
 
-  constructor() { }
+  constructor(private clubService: ClubService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -18,21 +20,30 @@ export class EditFishSpeciesComponent implements OnInit {
     return this.clubForm.get('fishSpecies') as FormArray;
   }
 
-  onSubmit(): void {
-    console.log(this.clubForm.value);
-  }
-
   onAddFish(): void {
     this.fishSpecies.push(this.newFish());
   }
 
   newFish(): FormGroup {
     return new FormGroup({
-      fishSpecie: new FormControl(''),
-      minimumSize: new FormControl(''),
-      closedSeasonStart: new FormControl(''),
-      closedSeasonEnd: new FormControl(''),
+      fishSpecie: new FormControl('', Validators.required),
+      minimumSize: new FormControl('', Validators.required),
+      closedSeasonStart: new FormControl('', Validators.required),
+      closedSeasonEnd: new FormControl('', Validators.required),
     });
   }
 
+  onRemoveFish(index: number): void {
+    this.fishSpecies.removeAt(index);
+  }
+
+  onSubmit(): void {
+    this.clubService.updateFishingClub(this.clubForm.controls.fishingClubId.value, this.clubForm.value).subscribe(result => {
+      if (result) {
+        this.toastr.success('Fische und Schonzeit erfolgreich geändert');
+      }
+    }, error => {
+      this.toastr.error(error.error);
+    });
+  }
 }

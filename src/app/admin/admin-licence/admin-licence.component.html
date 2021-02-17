@@ -13,6 +13,7 @@
     [pageSettings]="{pageSize: 10}"
     [toolbar]="['ExcelExport', 'Search']"
     (toolbarClick)="toolbarClick($event)"
+    (recordDoubleClick)="onUpdateLicence($event)"
     [dataSource]="licences">
     <e-columns>
       <e-column field="licenceName" headerText="Lizenz" textAlign="left" width="120"></e-column>
@@ -21,6 +22,11 @@
       <e-column field="startDate" headerText="Gültig von:" textAlign="left" width="120" type="date" [format]="formatOptions"></e-column>
       <e-column field="endDate" headerText="Gültig bis:" textAlign="left" width="120" type="date" [format]="formatOptions"></e-column>
       <e-column field="paid" headerText="Bezahlt" textAlign="left" width="120" [displayAsCheckBox]="true"></e-column>
+      <e-column headerText="Löschen" textAlign="center" width="120">
+        <ng-template #template let-data>
+          <i (click)="onDelete(data)" class="fa fa-trash-o fa-lg" aria-hidden="true" style="cursor: pointer"></i>
+        </ng-template>
+      </e-column>
     </e-columns>
   </ejs-grid>
 </div>

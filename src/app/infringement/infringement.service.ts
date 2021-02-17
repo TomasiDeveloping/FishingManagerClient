@@ -16,10 +16,6 @@ export class InfringementService {
     return this.http.get<Infringement[]>(this.baseUrl + 'infringements');
   }
 
-  getInfringementById(id: number): Observable<Infringement> {
-    return this.http.get<Infringement>(this.baseUrl + 'infringements/' + id);
-  }
-
   getInfringementsByUserId(userId: number): Observable<Infringement[]> {
     return this.http.get<Infringement[]>(this.baseUrl + 'infringements/user/' + userId);
   }

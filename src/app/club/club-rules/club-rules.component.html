@@ -1,0 +1,23 @@
+<div class="mb-4">
+<h2>Regeln</h2>
+  <ng-container *ngIf="fishingClub && fishingClub.rules.length > 0">
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Regeln
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul class="list-group">
+      <li *ngFor="let rule of fishingClub.rules" class="list-group-item">{{rule.rule}}</li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>
+  </ng-container>
+  <div class="mt-2">
+    <p>Externe Club Regeln</p>
+  </div>
+</div>

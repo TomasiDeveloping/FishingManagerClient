@@ -57,7 +57,7 @@ export class UserCardComponent implements OnInit, OnChanges {
       height: 'auto',
       data: {creatorId, userId}
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getInfringementsByUserId(userId);
     });
   }

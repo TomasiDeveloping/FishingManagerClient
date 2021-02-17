@@ -1,0 +1,101 @@
+<ng-container *ngIf="licence">
+  <h1 mat-dialog-title *ngIf="licence.licenceId > 0">{{licence.licenceName}} bearbeiten</h1>
+  <h1 mat-dialog-title *ngIf="licence.licenceId <= 0">Neue Lizenz hinzufügen</h1>
+  <mat-dialog-content>
+    <div class="container">
+      <form [formGroup]="licenceForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="licenceName">Lizenz Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{
+            'is-invalid': licenceForm.controls.licenceName.invalid &&
+            (licenceForm.controls.licenceName.dirty || licenceForm.controls.licenceName.touched),
+            'is-valid': licenceForm.controls.licenceName.valid
+            }"
+            id="licenceName"
+            formControlName="licenceName">
+          <div class="invalid-feedback"
+               *ngIf="licenceForm.controls.licenceName.errors &&
+                   (licenceForm.controls.licenceName.dirty || licenceForm.controls.licenceName.touched)">
+            <p *ngIf="licenceForm.controls.licenceName.errors.required">Lizenzname ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="user">Inhaber</label>
+          <select
+            id="user"
+            class="form-control"
+            [ngClass]="{
+            'is-invalid': licenceForm.controls.userId.invalid &&
+            (licenceForm.controls.userId.dirty || licenceForm.controls.userId.touched),
+            'is-valid': licenceForm.controls.userId.valid
+            }"
+            formControlName="userId">
+            <option *ngFor="let user of users" [ngValue]="user.userId">{{user.firstName}} {{user.lastName}}</option>
+          </select>
+          <div class="invalid-feedback"
+               *ngIf="licenceForm.controls.userId.errors &&
+                   (licenceForm.controls.userId.dirty || licenceForm.controls.userId.touched)">
+            <p *ngIf="licenceForm.controls.userId.errors.required">Inhaber ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="startDate">Gültig von:</label>
+          <input type="text"
+                 id="startDate"
+                 placeholder="Gültig von"
+                 class="form-control"
+                 [ngClass]="{
+            'is-invalid': licenceForm.controls.startDate.invalid &&
+            (licenceForm.controls.startDate.dirty || licenceForm.controls.startDate.touched),
+            'is-valid': licenceForm.controls.startDate.valid
+            }"
+                 placement="top"
+                 formControlName="startDate"
+                 [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                 bsDatepicker>
+          <div class="invalid-feedback"
+               *ngIf="licenceForm.controls.startDate.errors &&
+                   (licenceForm.controls.startDate.dirty || licenceForm.controls.startDate.touched)">
+            <p *ngIf="licenceForm.controls.startDate.errors.required">Gültig von ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="endDate">Gültig bis:</label>
+          <input type="text"
+                 id="endDate"
+                 placeholder="Gültig bis"
+                 class="form-control"
+                 [ngClass]="{
+            'is-invalid': licenceForm.controls.endDate.invalid &&
+            (licenceForm.controls.endDate.dirty || licenceForm.controls.endDate.touched),
+            'is-valid': licenceForm.controls.endDate.valid
+            }"
+                 placement="top"
+                 formControlName="endDate"
+                 [bsConfig]="{containerClass: 'theme-dark-blue'}"
+                 bsDatepicker>
+          <div class="invalid-feedback"
+               *ngIf="licenceForm.controls.endDate.errors &&
+                   (licenceForm.controls.endDate.dirty || licenceForm.controls.endDate.touched)">
+            <p *ngIf="licenceForm.controls.endDate.errors.required">Gültig bis ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="paid" formControlName="paid">
+            <label class="form-check-label" for="paid">Bezahlt</label>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button [disabled]="licenceForm.invalid || !licenceForm.dirty" type="submit" class="btn btn-success">Speichern
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Abbrechen</button>
+        </div>
+      </form>
+    </div>
+  </mat-dialog-content>
+</ng-container>

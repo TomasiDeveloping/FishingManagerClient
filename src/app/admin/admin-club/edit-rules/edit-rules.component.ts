@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ClubService} from '../../../club/club.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-rules',
@@ -9,7 +11,7 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 export class EditRulesComponent implements OnInit {
   @Input() clubForm: FormGroup;
 
-  constructor() { }
+  constructor(private clubService: ClubService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +26,21 @@ export class EditRulesComponent implements OnInit {
 
   newRule(): FormGroup {
     return new FormGroup({
-      rule: new FormControl(''),
+      rule: new FormControl('', Validators.required),
     });
   }
 
   onSubmit(): void {
-    console.log(this.clubForm.value);
+    this.clubService.updateFishingClub(this.clubForm.controls.fishingClubId.value, this.clubForm.value).subscribe(result => {
+      if (result) {
+        this.toastr.success('Regeln erfolgreich geändert');
+      }
+    }, error => {
+      this.toastr.error(error.error);
+    });
+  }
+
+  onRemoveRule(index: number): void {
+    this.rules.removeAt(index);
   }
 }

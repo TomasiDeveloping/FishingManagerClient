@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {AppUser, ChangePassword, User} from '../core/models/user';
 import {map} from 'rxjs/operators';
 import {Login} from '../core/models/login';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class UserService {
   currentUser$ = this.currentUserSource.asObservable();
   appUser: AppUser;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'users');
@@ -29,10 +28,6 @@ export class UserService {
         return user;
       })
     );
-  }
-
-  checkUserPassword(userId: number, password: string): Observable<boolean> {
-    return this.http.post<boolean>(this.baseUrl + 'users/' + userId + '/checkPassword', password);
   }
 
   checkEmailExists(email: string): Observable<boolean> {

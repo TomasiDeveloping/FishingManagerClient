@@ -3,6 +3,7 @@ import {Club} from '../../core/models/club';
 import {ClubService} from '../../club/club.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-admin-club',
   templateUrl: './admin-club.component.html',
@@ -33,11 +34,11 @@ export class AdminClubComponent implements OnInit {
       webSite: new FormControl(this.fishingClub.website),
       address: new FormGroup({
         title: new FormControl(this.fishingClub.address.title),
-        phone: new FormControl(this.fishingClub.address.phone),
-        street: new FormControl(this.fishingClub.address.street),
+        phone: new FormControl(this.fishingClub.address.phone, Validators.required),
+        street: new FormControl(this.fishingClub.address.street, Validators.required),
         addressAddition: new FormControl(this.fishingClub.address.addressAddition),
-        zip: new FormControl(this.fishingClub.address.zip),
-        city: new FormControl(this.fishingClub.address.city)
+        zip: new FormControl(this.fishingClub.address.zip, Validators.required),
+        city: new FormControl(this.fishingClub.address.city, Validators.required)
       }),
       fishSpecies: new FormArray([]),
       rules: new FormArray([])
@@ -46,10 +47,10 @@ export class AdminClubComponent implements OnInit {
     if (this.fishingClub.fishSpecies.length > 0) {
       this.fishingClub.fishSpecies.forEach(fish => {
         this.fishSpecies.push(new FormGroup({
-          fishSpecie: new FormControl(fish.fishSpecie),
-          minimumSize: new FormControl(fish.minimumSize),
-          closedSeasonStart: new FormControl(fish.closedSeasonStart),
-          closedSeasonEnd: new FormControl(fish.closedSeasonEnd)
+          fishSpecie: new FormControl(fish.fishSpecie, Validators.required),
+          minimumSize: new FormControl(fish.minimumSize, Validators.required),
+          closedSeasonStart: new FormControl(fish.closedSeasonStart, Validators.required),
+          closedSeasonEnd: new FormControl(fish.closedSeasonEnd, Validators.required)
         }));
       });
     } else {
@@ -77,16 +78,17 @@ export class AdminClubComponent implements OnInit {
 
   newRule(): FormGroup {
     return new FormGroup({
-      rule: new FormControl('')
+      rule: new FormControl('', Validators.required)
     });
   }
 
   newFish(): FormGroup {
     return new FormGroup({
-      fishSpecie: new FormControl(''),
-      minimumSize: new FormControl(''),
-      closedSeasonStart: new FormControl(''),
-      closedSeasonEnd: new FormControl(''),
+      fishSpecie: new FormControl('', Validators.required),
+      minimumSize: new FormControl('', Validators.required),
+      closedSeasonStart: new FormControl('', Validators.required),
+      closedSeasonEnd: new FormControl('', Validators.required),
     });
   }
 }
+

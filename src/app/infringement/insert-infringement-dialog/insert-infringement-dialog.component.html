@@ -5,20 +5,26 @@
       <div class="form-group">
         <label for="description">Verstoss</label>
         <input
-          [ngClass]="infringementForm.controls.description.invalid ? 'is-invalid': 'is-valid'"
+          [ngClass]="{
+          'is-invalid': infringementForm.controls.description.invalid &&
+          (infringementForm.controls.description.dirty || infringementForm.controls.description.touched),
+          'is-valid': infringementForm.controls.description.valid
+          }"
           formControlName="description"
           type="text"
           class="form-control"
           id="description"
           placeholder="Verstoss">
-        <div *ngIf="infringementForm.invalid" class="text-danger mt-1">
-          Verstoss darf nicht leer sein
+        <div class="invalid-feedback"
+             *ngIf="infringementForm.controls.description.errors &&
+                 (infringementForm.controls.description.dirty || infringementForm.controls.description.touched)">
+          <p *ngIf="infringementForm.controls.description.errors.required">Verstoss ist ein Pflichtfeld</p>
         </div>
       </div>
-      <button [disabled]="infringementForm.invalid" type="submit" class="btn btn-outline-success">Speichern</button>
+      <button [disabled]="infringementForm.invalid || !infringementForm.dirty" type="submit" class="btn btn-outline-success">Speichern</button>
     </form>
   </mat-dialog-content>
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions>
     <button mat-button color="warn" mat-dialog-close>Abbrechen</button>
   </mat-dialog-actions>
 </ng-container>

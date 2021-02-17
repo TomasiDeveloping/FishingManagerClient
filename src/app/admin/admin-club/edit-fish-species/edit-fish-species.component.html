@@ -7,41 +7,100 @@
       <ng-container formArrayName="fishSpecies">
         <div *ngFor="let f of fishSpecies.controls; let i=index">
           <ng-container [formGroupName]="i">
-
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Fischart</label>
-                <input class="form-control" id="name" formControlName="fishSpecie">
+                <input
+                  class="form-control"
+                  id="name"
+                  type="text"
+                  [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('fishSpecie').invalid &&
+                  (fishSpecies.controls[i].get('fishSpecie').dirty || fishSpecies.controls[i].get('fishSpecie').touched),
+                  'is-valid': fishSpecies.controls[i].get('fishSpecie').valid
+                  }"
+                  formControlName="fishSpecie">
+                <div class="invalid-feedback"
+                     *ngIf="fishSpecies.controls[i].get('fishSpecie').errors &&
+                 (fishSpecies.controls[i].get('fishSpecie').dirty || fishSpecies.controls[i].get('fishSpecie').touched)">
+                  <p *ngIf="fishSpecies.controls[i].get('fishSpecie').errors.required">Fischart ist ein Pflichtfeld</p>
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <label for="schonMass">Schonmass</label>
                 <div class="input-group mb-6">
-
-                  <input class="form-control" id="schonMass" formControlName="minimumSize">
+                  <input
+                    class="form-control"
+                    id="schonMass"
+                    type="number"
+                    [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('minimumSize').invalid &&
+                  (fishSpecies.controls[i].get('minimumSize').dirty || fishSpecies.controls[i].get('minimumSize').touched),
+                  'is-valid': fishSpecies.controls[i].get('minimumSize').valid
+                  }"
+                    formControlName="minimumSize">
                   <div class="input-group-append">
                     <span class="input-group-text">cm</span>
+                  </div>
+                  <div class="invalid-feedback"
+                       *ngIf="fishSpecies.controls[i].get('minimumSize').errors &&
+                 (fishSpecies.controls[i].get('minimumSize').dirty || fishSpecies.controls[i].get('minimumSize').touched)">
+                    <p *ngIf="fishSpecies.controls[i].get('minimumSize').errors.required">Schonmass ist ein
+                      Pflichtfeld</p>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="timeFrom">Schonzeit von</label>
-                <input class="form-control" id="timeFrom" formControlName="closedSeasonStart">
+                <input
+                  class="form-control"
+                  id="timeFrom"
+                  [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('closedSeasonStart').invalid &&
+                  (fishSpecies.controls[i].get('closedSeasonStart').dirty || fishSpecies.controls[i].get('closedSeasonStart').touched),
+                  'is-valid': fishSpecies.controls[i].get('closedSeasonStart').valid
+                  }"
+                  formControlName="closedSeasonStart">
+                <div class="invalid-feedback"
+                     *ngIf="fishSpecies.controls[i].get('closedSeasonStart').errors &&
+                 (fishSpecies.controls[i].get('closedSeasonStart').dirty || fishSpecies.controls[i].get('closedSeasonStart').touched)">
+                  <p *ngIf="fishSpecies.controls[i].get('closedSeasonStart').errors.required">Schonzeit von ist ein
+                    Pflichtfeld</p>
+                </div>
                 <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder keine</small>
               </div>
               <div class="form-group col-md-6">
                 <label for="timeTo">Schonzeit bis</label>
-                <input class="form-control" id="timeTo" formControlName="closedSeasonEnd">
+                <input
+                  class="form-control"
+                  id="timeTo"
+                  [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('closedSeasonEnd').invalid &&
+                  (fishSpecies.controls[i].get('closedSeasonEnd').dirty || fishSpecies.controls[i].get('closedSeasonEnd').touched),
+                  'is-valid': fishSpecies.controls[i].get('closedSeasonEnd').valid
+                  }"
+                  formControlName="closedSeasonEnd">
+                <div class="invalid-feedback"
+                     *ngIf="fishSpecies.controls[i].get('closedSeasonEnd').errors &&
+                 (fishSpecies.controls[i].get('closedSeasonEnd').dirty || fishSpecies.controls[i].get('closedSeasonEnd').touched)">
+                  <p *ngIf="fishSpecies.controls[i].get('closedSeasonEnd').errors.required">Schonzeit bis ist ein
+                    Pflichtfeld</p>
+                </div>
                 <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder keine</small>
               </div>
             </div>
+            <button
+              (click)="onRemoveFish(i)"
+              class="btn btn-outline-danger"
+              type="button">{{f.get('fishSpecie').value}} Entfernen
+            </button>
             <hr>
           </ng-container>
         </div>
       </ng-container>
-      <button class="btn btn-success mb-2" type="button" (click)="onAddFish()">Fischart hinzufügen</button>
+      <button class="btn btn-info mb-2" type="button" (click)="onAddFish()">Fischart hinzufügen</button>
       <div class="d-flex justify-content-end mb-4">
         <button [disabled]="clubForm.invalid" type="submit" class="btn btn-success">Speichern</button>
       </div>

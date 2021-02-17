@@ -3,7 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import { Observable } from 'rxjs';
 import {UserService} from '../user/user.service';
 import {map} from 'rxjs/operators';
-import {AppUser} from './models/user';
+import {AppUser, User} from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.userService.currentUser$.pipe(
-      map((user: AppUser) => {
+      map((user: User) => {
         return !!user;
       })
     );
