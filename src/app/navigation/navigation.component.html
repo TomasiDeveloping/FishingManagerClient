@@ -16,10 +16,15 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/fangstatistik" routerLinkActive="active">Fangstatistik</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"
+              *ngIf="currentUser?.rightName === 'Aufseher' ||
+              currentUser?.rightName === 'Administrator' ||
+              currentUser?.rightName === 'System-Admin'">
             <a class="nav-link" routerLink="/aufseher" routerLinkActive="active">Aufseher</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"
+              *ngIf="currentUser?.rightName === 'Administrator' ||
+              currentUser?.rightName === 'System-Admin'">
             <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
           </li>
           <li class="nav-item">

@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NgxNavbarModule} from 'ngx-bootstrap-navbar';
 import { UserComponent } from './user/user.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LicenceComponent } from './licence/licence.component';
 import { FishCatchHistoryComponent } from './fishCatchHistory/fish-catch-history.component';
@@ -57,6 +57,8 @@ import { LicenceEditComponent } from './licence/licence-edit/licence-edit.compon
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { FooterComponent } from './core/footer/footer.component';
 import { ClubRulesComponent } from './club/club-rules/club-rules.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {SpinnerInterceptor} from './core/interceptors/spinner.interceptor';
 
 
 @NgModule({
@@ -110,12 +112,21 @@ import { ClubRulesComponent } from './club/club-rules/club-rules.component';
     MatInputModule,
     MatDialogModule,
     MatTabsModule,
+    NgxSpinnerModule,
     GridModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     })
   ],
-  providers: [PageService, ToolbarService, ExcelExportService, DetailRowService, FilterService, ResizeService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    PageService,
+    ToolbarService,
+    ExcelExportService,
+    DetailRowService,
+    FilterService,
+    ResizeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
