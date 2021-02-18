@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {MatDialog} from '@angular/material/dialog';
+import {ForgotPasswordDialogComponent} from './forgot-password-dialog/forgot-password-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   @Output() login: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private router: Router,
+              private diaolg: MatDialog,
               private userService: UserService,
               private toastr: ToastrService) { }
 
@@ -38,6 +41,13 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       this.toastr.error(error.error);
+    });
+  }
+
+  onForgotPassword(): void {
+    this.diaolg.open(ForgotPasswordDialogComponent, {
+      width: '60%',
+      height: 'auto'
     });
   }
 }

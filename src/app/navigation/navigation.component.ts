@@ -3,6 +3,9 @@ import {UserService} from '../user/user.service';
 import {User} from '../core/models/user';
 import {MatDialog} from '@angular/material/dialog';
 import {UserUpdateDialogComponent} from '../user/user-update-dialog/user-update-dialog.component';
+import * as jwt_decode from 'jwt-decode';
+import {JwtPayload} from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navigation',
@@ -19,6 +22,15 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     const checkLogin = localStorage.getItem('id');
     if (checkLogin) {
+      const decodeToken: JwtPayload = jwt_decode.default(localStorage.getItem('token'));
+      const date = new Date(0);
+      date.setUTCSeconds(decodeToken.exp);
+      if (date < new Date()) {
+        Swal.fire('Sitzung abgelaufen',
+          'Die Sitzung ist abgelaufen, bitte neu einloggen',
+          'info')
+          .then(() => this.logout());
+      }
       this.loggedInUser = true;
       this.getCurrentUser();
     }

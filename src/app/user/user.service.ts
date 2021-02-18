@@ -34,6 +34,10 @@ export class UserService {
     return this.http.get<boolean>(this.baseUrl + 'users/emailexists?email=' + email);
   }
 
+  forgotPassword(email: string): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl + 'login/forgotPassword?email=' + email);
+  }
+
   insertUser(user: User): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'users', user);
   }
@@ -47,7 +51,7 @@ export class UserService {
   }
 
   login(login: Login): Observable<AppUser> {
-    return this.http.post<AppUser>(this.baseUrl + 'login/login', login).pipe(
+    return this.http.post<AppUser>(this.baseUrl + 'login', login).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('id', user.userId.toString());

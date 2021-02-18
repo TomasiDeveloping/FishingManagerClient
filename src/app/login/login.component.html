@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="text-center mt-2">
-    <a href="#">Password vergessen ?</a>
+    <div class="forgotPassword" (click)="onForgotPassword()">Password vergessen ?</div>
   </div>
   <button [disabled]="loginForm.invalid || !loginForm.dirty" class="btn btn-lg btn-primary btn-block mt-4" type="submit">Login</button>
 </form>

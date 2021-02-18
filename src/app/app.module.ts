@@ -59,6 +59,9 @@ import { FooterComponent } from './core/footer/footer.component';
 import { ClubRulesComponent } from './club/club-rules/club-rules.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {SpinnerInterceptor} from './core/interceptors/spinner.interceptor';
+import { ForgotPasswordDialogComponent } from './login/forgot-password-dialog/forgot-password-dialog.component';
+import { FooterContactComponent } from './core/footer/footer-contact/footer-contact.component';
+import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -92,6 +95,8 @@ import {SpinnerInterceptor} from './core/interceptors/spinner.interceptor';
     LicenceEditComponent,
     FooterComponent,
     ClubRulesComponent,
+    ForgotPasswordDialogComponent,
+    FooterContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +125,7 @@ import {SpinnerInterceptor} from './core/interceptors/spinner.interceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     PageService,
     ToolbarService,
     ExcelExportService,

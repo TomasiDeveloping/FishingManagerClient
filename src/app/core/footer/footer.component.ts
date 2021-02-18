@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {FooterContactComponent} from './footer-contact/footer-contact.component';
 
 @Component({
   selector: 'app-footer',
@@ -8,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   currentYear: number;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.currentYear = new Date().getFullYear();
   }
 
+  onContact(): void {
+    this.dialog.open(FooterContactComponent, {
+      width: '80%',
+      height: 'auto'
+    });
+  }
 }

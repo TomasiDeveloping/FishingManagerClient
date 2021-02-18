@@ -12,8 +12,8 @@ export class SpinnerService {
   busy(): void {
     this.busyRequestCount++;
     this.spinnerService.show(undefined, {
-      type: 'square-loader',
-      bdColor: 'rgba(255,255,255,0.7)',
+      type: 'ball-spin-fade',
+      bdColor: 'rgba(0, 0, 0, 0.8)',
       color: '#260ce3'
     });
   }

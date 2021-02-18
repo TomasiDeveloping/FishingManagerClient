@@ -10,3 +10,9 @@
 .container {
   min-height: calc(100vh - 50px);
 }
+.forgotPassword {
+  color: blue;
+}
+.forgotPassword:hover {
+  cursor: pointer;
+}
