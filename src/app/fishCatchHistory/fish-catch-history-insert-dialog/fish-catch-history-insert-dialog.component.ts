@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Days, FishCatch, Months, Statistic} from '../../core/models/statistic';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClubService} from '../../club/club.service';
 import {Club} from '../../core/models/club';
 import {FishCatchHistoryService} from '../fish-catch-history.service';
@@ -117,8 +117,6 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
           other: new FormControl('')
         }));
       });
-    } else {
-      this.addFish();
     }
   }
 
@@ -128,8 +126,8 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
 
   newFish(): FormGroup {
     return new FormGroup({
-      fish: new FormControl(''),
-      number: new FormControl(''),
+      fish: new FormControl('', Validators.required),
+      number: new FormControl('', Validators.required),
       other: new FormControl(''),
     });
   }
@@ -186,5 +184,9 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  onCatchRemove(index: number): void {
+    this.fishSpecies.removeAt(index);
   }
 }

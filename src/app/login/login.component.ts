@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.userService.login(this.loginForm.value).subscribe(result => {
       if (result) {
-        localStorage.setItem('id', result.userId.toString());
         this.login.emit(true);
       }
     }, error => {

@@ -26,6 +26,7 @@
           </select>
         </div>
       </div>
+      <hr>
       <ng-container formArrayName="fishSpecies">
         <div *ngFor="let f of fishSpecies.controls; let i=index">
 
@@ -33,29 +34,59 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="fish">Fischart</label>
-                <select id="fish" formControlName="fish" class="form-control">
+                <select
+                  id="fish"
+                  formControlName="fish"
+                  [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('fish').invalid &&
+                  (fishSpecies.controls[i].get('fish').dirty || fishSpecies.controls[i].get('fish').touched),
+                  'is-valid': fishSpecies.controls[i].get('fish').valid
+                  }"
+                  class="form-control">
                   <option *ngFor="let item of fish" [ngValue]="item">{{item}}</option>
                   <option [ngValue]="'other'">Andere</option>
                 </select>
+                <div class="invalid-feedback"
+                     *ngIf="fishSpecies.controls[i].get('fish').errors &&
+                 (fishSpecies.controls[i].get('fish').dirty || fishSpecies.controls[i].get('fish').touched)">
+                  <p *ngIf="fishSpecies.controls[i].get('fish').errors.required">Fischart ist ein Pflichtfeld</p>
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <label for="number">Anzahl</label>
-                <input id="number" min="1" type="number" formControlName="number" class="form-control">
+                <input
+                  id="number"
+                  min="1"
+                  type="number"
+                  formControlName="number"
+                  [ngClass]="{
+                  'is-invalid': fishSpecies.controls[i].get('number').invalid &&
+                  (fishSpecies.controls[i].get('number').dirty || fishSpecies.controls[i].get('number').touched),
+                  'is-valid': fishSpecies.controls[i].get('number').valid
+                  }"
+                  class="form-control">
+                <div class="invalid-feedback"
+                     *ngIf="fishSpecies.controls[i].get('number').errors &&
+                 (fishSpecies.controls[i].get('number').dirty || fishSpecies.controls[i].get('number').touched)">
+                  <p *ngIf="fishSpecies.controls[i].get('number').errors.required">Anzahl ist ein Pflichtfeld</p>
+                </div>
               </div>
             </div>
+            <button (click)="onCatchRemove(i)" class="btn btn-outline-danger">{{f.get('fish').value}} entfernen</button>
             <div class="form-group" *ngIf="f.get('fish').value === 'other'">
               <label for="other">Fischart</label>
               <input id="other" type="text" formControlName="other" class="form-control">
               <small class="form-text text-muted">Wenn anderer Fisch bitte Fischart eintragen</small>
             </div>
+            <hr>
           </ng-container>
         </div>
       </ng-container>
-      <button type="button" (click)="addFish()" class="btn btn-success">Weitere Fischart</button>
+      <button type="button" (click)="addFish()" class="btn btn-info">Fang hinzufügen</button>
 
       <div class="d-flex justify-content-between mt-4">
-        <button type="submit" class="btn btn-primary">Speichern</button>
         <button (click)="onClose()" type="button" class="btn btn-danger">Abbrechen</button>
+        <button [disabled]="statisticForm.invalid || !statisticForm.dirty" type="submit" class="btn btn-success">Speichern</button>
       </div>
     </form>
   </mat-dialog-content>

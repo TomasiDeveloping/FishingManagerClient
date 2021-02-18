@@ -51,6 +51,7 @@ export class UserService {
       map(user => {
         if (user) {
           localStorage.setItem('id', user.userId.toString());
+          localStorage.setItem('token', user.token);
           return user;
         }
       })
@@ -62,6 +63,7 @@ export class UserService {
 
   logout(): void{
     localStorage.removeItem('id');
+    localStorage.removeItem('token');
     this.currentUserSource.next(null);
   }
 }
