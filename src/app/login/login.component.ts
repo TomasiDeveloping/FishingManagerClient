@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AppUser} from '../core/models/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../user/user.service';
@@ -13,14 +12,14 @@ import {ForgotPasswordDialogComponent} from './forgot-password-dialog/forgot-pas
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  appUser: AppUser;
   loginForm: FormGroup;
   @Output() login: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private router: Router,
-              private diaolg: MatDialog,
+              private dialog: MatDialog,
               private userService: UserService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   onForgotPassword(): void {
-    this.diaolg.open(ForgotPasswordDialogComponent, {
+    this.dialog.open(ForgotPasswordDialogComponent, {
       width: '60%',
       height: 'auto'
     });

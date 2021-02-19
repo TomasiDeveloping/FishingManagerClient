@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Club} from '../../core/models/club';
 import {ClubService} from '../club.service';
 
@@ -11,7 +11,8 @@ export class ClubRulesComponent implements OnInit {
   fishingClub: Club;
   panelOpenState = false;
 
-  constructor(private clubService: ClubService) { }
+  constructor(private clubService: ClubService) {
+  }
 
   ngOnInit(): void {
     this.getFishingClub();

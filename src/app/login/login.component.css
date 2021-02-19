@@ -4,15 +4,19 @@
   padding: 15px;
   margin: 0 auto;
 }
+
 .container {
   margin-top: 8em;
 }
+
 .container {
   min-height: calc(100vh - 50px);
 }
+
 .forgotPassword {
   color: blue;
 }
+
 .forgotPassword:hover {
   cursor: pointer;
 }

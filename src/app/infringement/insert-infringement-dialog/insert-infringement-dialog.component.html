@@ -21,7 +21,9 @@
           <p *ngIf="infringementForm.controls.description.errors.required">Verstoss ist ein Pflichtfeld</p>
         </div>
       </div>
-      <button [disabled]="infringementForm.invalid || !infringementForm.dirty" type="submit" class="btn btn-outline-success">Speichern</button>
+      <button [disabled]="infringementForm.invalid || !infringementForm.dirty" type="submit"
+              class="btn btn-outline-success">Speichern
+      </button>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions>

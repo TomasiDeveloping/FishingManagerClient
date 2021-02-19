@@ -54,7 +54,8 @@
         <p *ngIf="contactForm.controls.message.errors.required">Nachricht ist ein Pflichtfeld</p>
       </div>
     </div>
-    <button [disabled]="contactForm.invalid || !contactForm.dirty" class="btn btn-success" type="submit">Absenden</button>
+    <button [disabled]="contactForm.invalid || !contactForm.dirty" class="btn btn-success" type="submit">Absenden
+    </button>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

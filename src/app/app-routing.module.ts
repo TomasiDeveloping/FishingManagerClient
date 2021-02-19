@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LicenceComponent} from './licence/licence.component';
@@ -13,8 +13,8 @@ const routes: Routes = [
   {path: 'fangstatistik', component: FishCatchHistoryComponent},
   {path: 'aufseher', component: SupervisorComponent, canActivate: [AuthGuard]},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: HomeComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', component: HomeComponent},
 ];
 
 @NgModule({
@@ -23,4 +23,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

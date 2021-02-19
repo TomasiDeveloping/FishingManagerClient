@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LicenceService} from '../licence.service';
 import {Licence} from '../../core/models/licence';
 
@@ -11,7 +11,8 @@ export class LicenceCardComponent implements OnInit {
   licences: Licence[];
   currentDate = new Date();
 
-  constructor(private licenceService: LicenceService) { }
+  constructor(private licenceService: LicenceService) {
+  }
 
   ngOnInit(): void {
     this.getLicencesByUser();

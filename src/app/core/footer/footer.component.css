@@ -4,17 +4,21 @@
   height: 50px;
   background-color: lightgray;
 }
-.content{
+
+.content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.content > div{
+
+.content > div {
   cursor: pointer;
 }
+
 .content > div:hover {
   color: blue;
 }
+
 .copy {
   display: flex;
   justify-content: center;

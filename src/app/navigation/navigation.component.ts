@@ -17,7 +17,8 @@ export class NavigationComponent implements OnInit {
   currentUser: User;
 
   constructor(private userService: UserService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     const checkLogin = localStorage.getItem('id');

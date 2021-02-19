@@ -27,11 +27,11 @@
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label for="schonMass">Schonmass</label>
+                <label for="schonmass">Schonmass</label>
                 <div class="input-group mb-6">
                   <input
                     class="form-control"
-                    id="schonMass"
+                    id="schonmass"
                     type="number"
                     [ngClass]="{
                   'is-invalid': fishSpecies.controls[i].get('minimumSize').invalid &&
@@ -69,7 +69,7 @@
                   <p *ngIf="fishSpecies.controls[i].get('closedSeasonStart').errors.required">Schonzeit von ist ein
                     Pflichtfeld</p>
                 </div>
-                <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder keine</small>
+                <small class="form-text text-muted">Schonzeit in Zahlen z.B. 01.02 oder "keine"</small>
               </div>
               <div class="form-group col-md-6">
                 <label for="timeTo">Schonzeit bis</label>

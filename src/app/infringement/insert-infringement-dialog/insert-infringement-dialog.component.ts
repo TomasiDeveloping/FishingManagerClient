@@ -28,7 +28,7 @@ export class InsertInfringementDialogComponent implements OnInit {
     this.createInfringementForm();
   }
 
-  createInfringementForm(): void{
+  createInfringementForm(): void {
     this.infringementForm = new FormGroup({
       description: new FormControl('', Validators.required),
       userName: new FormControl(''),

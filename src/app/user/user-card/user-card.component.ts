@@ -22,7 +22,8 @@ export class UserCardComponent implements OnInit, OnChanges {
   constructor(private userService: UserService,
               private dialog: MatDialog,
               private toastr: ToastrService,
-              private infringementService: InfringementService) { }
+              private infringementService: InfringementService) {
+  }
 
   ngOnInit(): void {
     if (this.userId < 0) {
@@ -47,7 +48,7 @@ export class UserCardComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.getUserById(changes.userId.currentValue);
     this.getInfringementsByUserId(changes.userId.currentValue);
-    }
+  }
 
   onAddInfringement(): void {
     const userId = this.userId;

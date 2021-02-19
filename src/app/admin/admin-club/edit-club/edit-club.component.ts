@@ -13,7 +13,9 @@ export class EditClubComponent implements OnInit {
   @Input() clubForm: FormGroup;
   @Input() public fishingClub: Club;
 
-  constructor(private clubService: ClubService, private toastr: ToastrService) { }
+  constructor(private clubService: ClubService,
+              private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
   }

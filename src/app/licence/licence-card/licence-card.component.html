@@ -14,7 +14,6 @@
         Verbleibende Stunden: {{ licence.endDate | amDifference: currentDate :'hours'}} Stunden
       </p>
       <p class="card-text text-danger" *ngIf="!(currentDate | amIsBefore:licence.endDate:'hour')">Lizenz abgelaufen</p>
-      <!--      <a href="#" class="btn btn-primary">Go somewhere</a>-->
     </div>
   </div>
 </ng-container>

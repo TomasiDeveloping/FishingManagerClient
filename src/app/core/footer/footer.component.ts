@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {FooterContactComponent} from './footer-contact/footer-contact.component';
 
@@ -10,7 +10,8 @@ import {FooterContactComponent} from './footer-contact/footer-contact.component'
 export class FooterComponent implements OnInit {
   currentYear: number;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.currentYear = new Date().getFullYear();

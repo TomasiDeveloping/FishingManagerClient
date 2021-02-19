@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {Club} from '../core/models/club';
@@ -16,7 +16,8 @@ export class ClubService {
   baseUrl = environment.apiUrl;
   fishingClub: Club;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getFishingClub(): Observable<Club> {
     if (this.fishingClub) {

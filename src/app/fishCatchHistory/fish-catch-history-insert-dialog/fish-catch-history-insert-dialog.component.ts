@@ -70,8 +70,9 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
     this.getFishingClub();
     this.createHours();
   }
+
   createHours(): void {
-    for (let i = 0; i < 13; i ++) {
+    for (let i = 0; i < 13; i++) {
       this.hours.push(i.toString());
     }
     this.minutes.push('00');
@@ -81,7 +82,7 @@ export class FishCatchHistoryInsertDialogComponent implements OnInit {
   }
 
   initForm(): void {
-    this.day = this.currentDate.getDate() ;
+    this.day = this.currentDate.getDate();
     this.month = this.currentDate.getMonth() + 1;
     let checkDay = null;
     const checkMonth = this.statistic.statistic.months.filter(a => +a.month === this.month);

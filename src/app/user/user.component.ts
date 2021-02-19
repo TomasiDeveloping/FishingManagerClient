@@ -10,7 +10,8 @@ import {UserService} from './user.service';
 export class UserComponent implements OnInit {
   currentUser: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userService.currentUser$.subscribe(user => {

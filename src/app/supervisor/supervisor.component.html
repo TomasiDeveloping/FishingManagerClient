@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h1>Aufseher Bereich</h1>
+  <h1>Aufseherbereich</h1>
   <form>
     <mat-form-field appearance="outline">
       <mat-label>Users</mat-label>
@@ -19,7 +19,6 @@
   </form>
   <ng-container *ngIf="userId">
     <app-user-card [userId]="userId"></app-user-card>
-
   </ng-container>
   <ng-container *ngIf="licences">
     <table class="table table-striped table-bordered">
@@ -40,7 +39,8 @@
         <td>{{licence.startDate | date: 'dd.MM.yyyy HH:mm'}}</td>
         <td>{{licence.endDate | date: 'dd.MM.yyyy HH:mm'}}</td>
         <td>{{!(currentDate | amIsBefore:licence.endDate:'hour') ? 'Ja' : 'Nein'}}</td>
-        <td><i (click)="onStatistic(licence.licenceId)" class="fa fa-bar-chart" aria-hidden="true" style="cursor: pointer"></i></td>
+        <td><i (click)="onStatistic(licence.licenceId)" class="fa fa-bar-chart" aria-hidden="true"
+               style="cursor: pointer"></i></td>
       </tr>
       </tbody>
     </table>

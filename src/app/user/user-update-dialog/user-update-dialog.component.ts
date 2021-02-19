@@ -57,6 +57,7 @@ export class UserUpdateDialogComponent implements OnInit {
       });
     });
   }
+
   validateEmailNotTaken(): AsyncValidatorFn {
     return control => {
       return timer(500).pipe(
@@ -146,13 +147,13 @@ export class UserUpdateDialogComponent implements OnInit {
         } else {
           this.userService.changeUserPassword(this.changePassword).subscribe(response => {
             if (response) {
-              Swal.fire('Neuse Passwort',
-                'Passwort erfolgreich geändert. Sie werden automatisch ausgelogt',
+              Swal.fire('Neues Passwort',
+                'Passwort erfolgreich geändert. Sie werden automatisch ausgeloggt',
                 'success')
                 .then(() => this.onCancel(true));
             }
           }, error => {
-            Swal.fire('Neuse Passwort', error.error, 'error').then();
+            Swal.fire('Neues Passwort', error.error, 'error').then();
           });
         }
       }

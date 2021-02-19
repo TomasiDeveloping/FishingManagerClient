@@ -13,7 +13,7 @@
       <e-column field="year" headerText="Jahr" textAlign="left" width="120"></e-column>
       <e-column headerText="Detail" textAlign="left" width="120">
         <ng-template #template let-data>
-          <i (click)="onStatistic(data.licenceId)" class="fa fa-bar-chart" aria-hidden="true" style="cursor: pointer"></i>
+          <i (click)="onStatistic(data)" class="fa fa-bar-chart" aria-hidden="true" style="cursor: pointer"></i>
         </ng-template>
       </e-column>
     </e-columns>

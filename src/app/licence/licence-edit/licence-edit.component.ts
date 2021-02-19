@@ -5,13 +5,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../core/models/user';
 import {ClubService} from '../../club/club.service';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { deLocale } from 'ngx-bootstrap/locale';
+import {defineLocale} from 'ngx-bootstrap/chronos';
+import {deLocale} from 'ngx-bootstrap/locale';
 import {LicenceService} from '../licence.service';
 import {ToastrService} from 'ngx-toastr';
 
 defineLocale('de', deLocale);
-
 
 
 @Component({

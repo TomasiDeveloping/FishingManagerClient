@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {UserService} from '../user/user.service';
 import {map} from 'rxjs/operators';
 import {User} from './models/user';
@@ -10,7 +10,7 @@ import {User} from './models/user';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   canActivate(
@@ -19,9 +19,15 @@ export class AuthGuard implements CanActivate {
     return this.userService.currentUser$.pipe(
       map((user: User) => {
         if (state.url === '/aufseher') {
+          if (!user) {
+            return this.router.createUrlTree(['/home']);
+          }
           if (user.rightName === 'System-Admin' || user.rightName === 'Aufseher' || user.rightName === 'Administrator') {
             return true;
           }
+        }
+        if (!user) {
+          return this.router.createUrlTree(['/home']);
         }
         if (state.url === '/admin') {
           if (user.rightName === 'System-Admin' || user.rightName === 'Administrator') {

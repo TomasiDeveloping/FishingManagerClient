@@ -13,7 +13,10 @@ import {Address} from '../../core/models/address';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor(private clubService: ClubService, private dialog: MatDialog) { }
+  constructor(private clubService: ClubService,
+              private dialog: MatDialog) {
+  }
+
   @ViewChild('grid', {static: true}) public grid: GridComponent;
   users: User[];
   public childGrid: GridModel;
@@ -45,20 +48,21 @@ export class AdminUsersComponent implements OnInit {
       ],
     };
   }
+
   toolbarClick(args: any): void {
     if (args.item.text === 'Excel Export') {
       const excelExportProperties: ExcelExportProperties = {
         fileName: 'Adressen.xlsx',
       };
-      (this.grid.columns[4]as ColumnDirective).visible = false;
-      (this.grid.columns[5]as ColumnDirective).visible = false;
+      (this.grid.columns[4] as ColumnDirective).visible = false;
+      (this.grid.columns[5] as ColumnDirective).visible = false;
 
-      (this.grid.columns[6]as ColumnDirective).visible = true;
-      (this.grid.columns[7]as ColumnDirective).visible = true;
-      (this.grid.columns[8]as ColumnDirective).visible = true;
-      (this.grid.columns[9]as ColumnDirective).visible = true;
-      (this.grid.columns[10]as ColumnDirective).visible = true;
-      (this.grid.columns[11]as ColumnDirective).visible = true;
+      (this.grid.columns[6] as ColumnDirective).visible = true;
+      (this.grid.columns[7] as ColumnDirective).visible = true;
+      (this.grid.columns[8] as ColumnDirective).visible = true;
+      (this.grid.columns[9] as ColumnDirective).visible = true;
+      (this.grid.columns[10] as ColumnDirective).visible = true;
+      (this.grid.columns[11] as ColumnDirective).visible = true;
       this.grid.excelExport(excelExportProperties).then();
     }
   }
@@ -67,10 +71,10 @@ export class AdminUsersComponent implements OnInit {
     const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
       width: '80%',
       height: 'auto',
-      data: { user: event.rowData as User, isAdmin: true }
+      data: {user: event.rowData as User, isAdmin: true}
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.getUsers();
+        this.getUsers();
       }
     );
   }
@@ -81,7 +85,7 @@ export class AdminUsersComponent implements OnInit {
     const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
       width: '80%',
       height: 'auto',
-      data: { user, isAdmin: true}
+      data: {user, isAdmin: true}
     });
     dialogRef.afterClosed().subscribe(() => {
       this.getUsers();

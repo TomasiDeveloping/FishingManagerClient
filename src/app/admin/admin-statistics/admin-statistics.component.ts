@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ClubService} from '../../club/club.service';
 import {Statistic} from '../../core/models/statistic';
 import {MatDialog} from '@angular/material/dialog';
@@ -11,8 +11,11 @@ import {FishCatchHistoryDialogComponent} from '../../fishCatchHistory/fish-catch
 })
 export class AdminStatisticsComponent implements OnInit {
   statistics: Statistic[];
+  @ViewChild('template') public data: TemplateRef<Statistic>;
 
-  constructor(private clubService: ClubService, private dialog: MatDialog) { }
+  constructor(private clubService: ClubService,
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.getStatistics();
@@ -24,11 +27,11 @@ export class AdminStatisticsComponent implements OnInit {
     });
   }
 
-  onStatistic(licenceId: number): void {
+  onStatistic(statistic: Statistic): void {
     this.dialog.open(FishCatchHistoryDialogComponent, {
       width: '80%',
       height: 'auto',
-      data: licenceId
+      data: statistic.licenceId
     });
   }
 }

@@ -13,10 +13,13 @@ import Swal from 'sweetalert2';
 })
 export class AdminLicenceComponent implements OnInit {
   @ViewChild('grid', {static: true}) public grid: GridComponent;
+  @ViewChild('template') public data: any;
   licences: Licence[];
-  formatOptions = { type: 'date', format: 'dd.MM.yyyy HH:mm:ss' };
+  formatOptions = {type: 'date', format: 'dd.MM.yyyy HH:mm:ss'};
 
-  constructor(private licenceService: LicenceService, private dialog: MatDialog) { }
+  constructor(private licenceService: LicenceService,
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.getLicences();

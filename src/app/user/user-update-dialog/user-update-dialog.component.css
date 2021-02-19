@@ -13,6 +13,7 @@
   .buttons {
     flex-direction: column;
   }
+
   #changePassword {
     margin-bottom: 20px;
   }

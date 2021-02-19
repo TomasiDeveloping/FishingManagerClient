@@ -11,7 +11,9 @@ import {ToastrService} from 'ngx-toastr';
 export class EditRulesComponent implements OnInit {
   @Input() clubForm: FormGroup;
 
-  constructor(private clubService: ClubService, private toastr: ToastrService) { }
+  constructor(private clubService: ClubService,
+              private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
   }

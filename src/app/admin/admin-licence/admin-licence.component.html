@@ -5,7 +5,6 @@
   <div class="mb-2" style="cursor: pointer" (click)="onAddLicence()">
     <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> Lizenz hinzufügen
   </div>
-
   <ejs-grid
     #grid
     [allowResizing]="true"
@@ -19,8 +18,10 @@
       <e-column field="licenceName" headerText="Lizenz" textAlign="left" width="120"></e-column>
       <e-column field="userName" headerText="Inhaber" textAlign="left" width="120"></e-column>
       <e-column field="creatorName" headerText="Aussteller" textAlign="left" width="120"></e-column>
-      <e-column field="startDate" headerText="Gültig von:" textAlign="left" width="120" type="date" [format]="formatOptions"></e-column>
-      <e-column field="endDate" headerText="Gültig bis:" textAlign="left" width="120" type="date" [format]="formatOptions"></e-column>
+      <e-column field="startDate" headerText="Gültig von:" textAlign="left" width="120" type="date"
+                [format]="formatOptions"></e-column>
+      <e-column field="endDate" headerText="Gültig bis:" textAlign="left" width="120" type="date"
+                [format]="formatOptions"></e-column>
       <e-column field="paid" headerText="Bezahlt" textAlign="left" width="120" [displayAsCheckBox]="true"></e-column>
       <e-column headerText="Löschen" textAlign="center" width="120">
         <ng-template #template let-data>

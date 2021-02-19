@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
@@ -13,12 +13,8 @@ export class UserService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<User>(null);
   currentUser$ = this.currentUserSource.asObservable();
-  appUser: AppUser;
 
-  constructor(private http: HttpClient) { }
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users');
+  constructor(private http: HttpClient) {
   }
 
   getUserById(id: number): Observable<User> {
@@ -61,11 +57,12 @@ export class UserService {
       })
     );
   }
+
   setCurrentUser(user: User): void {
     this.currentUserSource.next(user);
   }
 
-  logout(): void{
+  logout(): void {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     this.currentUserSource.next(null);

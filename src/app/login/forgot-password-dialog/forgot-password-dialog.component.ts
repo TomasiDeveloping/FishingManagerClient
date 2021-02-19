@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../user/user.service';
 import {ToastrService} from 'ngx-toastr';
@@ -14,7 +14,8 @@ export class ForgotPasswordDialogComponent implements OnInit {
 
   constructor(private userService: UserService,
               private dialogRef: MatDialogRef<ForgotPasswordDialogComponent>,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.initForm();

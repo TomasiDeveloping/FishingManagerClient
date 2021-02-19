@@ -26,12 +26,14 @@ export class SupervisorComponent implements OnInit {
 
   constructor(private clubService: ClubService,
               private licenceService: LicenceService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.getUsers();
 
   }
+
   initAutoComplete(): void {
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -63,7 +65,7 @@ export class SupervisorComponent implements OnInit {
   }
 
   displayFn(user: User): string {
-    return user ? user.firstName + ' ' + user.lastName  : '';
+    return user ? user.firstName + ' ' + user.lastName : '';
   }
 
   onSelectChange(event: MatAutocompleteSelectedEvent): void {
