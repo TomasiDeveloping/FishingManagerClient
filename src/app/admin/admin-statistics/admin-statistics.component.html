@@ -1,7 +1,16 @@
-<div class="container mt-2">
+<div class="container mt-2 mb-4">
   <div>
     <h2>Statistiken</h2>
   </div>
+  <form [formGroup]="createLicenceForm" (ngSubmit)="onCreateStatisticOfYear()">
+    <div class="form-group">
+      <label for="year">Jahresstatistik erstellen</label>
+      <select id="year" formControlName="year" class="form-control">
+        <option [value]="year" *ngFor="let year of years">{{year}}</option>
+      </select>
+    </div>
+      <button [disabled]="createLicenceForm.invalid || !createLicenceForm.dirty" type="submit" class="btn btn-success mb-2">Excel erstellen</button>
+  </form>
   <ejs-grid
     [allowResizing]="true"
     [pageSettings]="{pageSize: 10}"

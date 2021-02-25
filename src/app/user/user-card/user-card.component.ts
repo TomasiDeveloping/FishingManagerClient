@@ -34,7 +34,7 @@ export class UserCardComponent implements OnInit, OnChanges {
   }
 
   getUserById(userId: number): void {
-    this.userService.getUserById(userId).subscribe(result => {
+    this.userService.getCurrentUser(userId).subscribe(result => {
       this.user = result;
     });
   }

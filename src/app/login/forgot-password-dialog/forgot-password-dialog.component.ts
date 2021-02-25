@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../user/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialogRef} from '@angular/material/dialog';
+import {environment} from '../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgot-password-dialog',
@@ -11,6 +13,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class ForgotPasswordDialogComponent implements OnInit {
   forgotPasswordForm: FormGroup;
+  isTestMode = environment.isTestMode;
 
   constructor(private userService: UserService,
               private dialogRef: MatDialogRef<ForgotPasswordDialogComponent>,
@@ -29,6 +32,10 @@ export class ForgotPasswordDialogComponent implements OnInit {
   }
 
   onForgotPassword(): void {
+    if (this.isTestMode) {
+      Swal.fire('Test Modus', 'Im Testmodus kann kein neues Password angefordert werden', 'info').then(() => this.dialogRef.close());
+      return;
+    }
     this.userService.forgotPassword(this.forgotPasswordForm.controls.email.value).subscribe(response => {
       if (response) {
         this.dialogRef.close();

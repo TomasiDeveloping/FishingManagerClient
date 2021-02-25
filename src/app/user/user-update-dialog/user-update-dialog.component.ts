@@ -99,6 +99,10 @@ export class UserUpdateDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.isTestMode) {
+      Swal.fire('Test Modus', 'Im Testmodus können keine User bearbeitet werden', 'info').then(() => this.dialogRef.close());
+      return;
+    }
     if (this.currentUser.userId <= 0) {
       this.insertUser();
     } else {

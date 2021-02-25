@@ -1,4 +1,6 @@
 <div class="container">
+
+
   <h1 class="text-center">Fischer Lizenz Manager</h1>
   <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="text-center mb-4">
@@ -48,5 +50,23 @@
             type="submit">Login
     </button>
   </form>
+  <ng-container *ngIf="isTestMode">
+    <div class="doc text-center mt-4">
+      <h3>Dokumentation Fischer Lizenz Manager</h3>
+      <i (click)="onOpenDocu()" class="fa fa-file-pdf-o fa-2x" style="cursor: pointer" aria-hidden="true"></i>
+    </div>
+    <div class="mt-4 text-center">
+      <h3>Test Logins</h3>
+      <div>Administrator:</div>
+      <code style="cursor: pointer" (click)="patchValueAutoLogin('p.tomasi@hotmail.ch', 'Test')">p.tomasi@hotmail.ch |
+        Passwort: Test</code>
+      <div>Aufseher:</div>
+      <code style="cursor: pointer" (click)="patchValueAutoLogin('h.muster@test.ch', 'Test')">h.muster@test.ch |
+        Passwort: Test</code>
+      <div>Mitglied:</div>
+      <code style="cursor: pointer" (click)="patchValueAutoLogin('Janik.Lambert99@outlook.com', 'Test')">Janik.Lambert99@outlook.com
+        | Passwort: Test</code>
+    </div>
+  </ng-container>
 </div>
 

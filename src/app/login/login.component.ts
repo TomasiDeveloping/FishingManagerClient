@@ -5,6 +5,7 @@ import {UserService} from '../user/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import {ForgotPasswordDialogComponent} from './forgot-password-dialog/forgot-password-dialog.component';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import {ForgotPasswordDialogComponent} from './forgot-password-dialog/forgot-pas
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isTestMode = environment.isTestMode;
   loginForm: FormGroup;
   @Output() login: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -48,5 +50,15 @@ export class LoginComponent implements OnInit {
       width: '60%',
       height: 'auto'
     });
+  }
+
+  onOpenDocu(): void {
+    window.open('assets/documents/LizenzManager.pdf');
+  }
+
+  patchValueAutoLogin(email: string, password: string): void {
+    this.loginForm.controls.email.setValue(email);
+    this.loginForm.controls.password.setValue(password);
+    this.loginForm.markAsDirty();
   }
 }

@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClubService} from '../../../club/club.service';
 import {ToastrService} from 'ngx-toastr';
+import {environment} from '../../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-fish-species',
@@ -10,6 +12,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class EditFishSpeciesComponent implements OnInit {
   @Input() clubForm: FormGroup;
+  isTestMode = environment.isTestMode;
 
   constructor(private clubService: ClubService,
               private toastr: ToastrService) {
@@ -40,6 +43,10 @@ export class EditFishSpeciesComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.isTestMode) {
+      Swal.fire('Test Modus', 'Im Testmodus kann nichts bearbeitet werden', 'info').then();
+      return;
+    }
     this.clubService.updateFishingClub(this.clubForm.controls.fishingClubId.value, this.clubForm.value).subscribe(result => {
       if (result) {
         this.toastr.success('Fische und Schonzeit erfolgreich geändert');

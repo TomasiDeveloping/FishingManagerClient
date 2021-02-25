@@ -6,7 +6,7 @@
     <form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="externRules">Vorschriften Link (optional)</label>
-        <input type="url" class="form-control is-valid" id="externRules">
+        <input type="url" class="form-control is-valid" id="externRules" formControlName="externRuleUrl">
       </div>
       <ng-container formArrayName="rules">
         <div *ngFor="let f of rules.controls; let i=index">

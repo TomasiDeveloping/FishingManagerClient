@@ -8,6 +8,7 @@ export interface Club {
   fishSpecies: Fish[];
   website: string;
   pictureUrl: string;
+  externRuleUrl: string;
 }
 
 interface Rules {

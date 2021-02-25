@@ -10,6 +10,7 @@ export interface User {
   email: string;
   address: Address;
   active: boolean;
+  userFlag: number;
 }
 
 export interface AppUser {
@@ -18,6 +19,7 @@ export interface AppUser {
   fullName: string;
   rightId: number;
   token: string;
+  userFlag: number;
 }
 
 export interface ChangePassword {

@@ -50,11 +50,21 @@
     </div>
   </nav>
   <div class="container">
+    <ng-container *ngIf="isTestMode">
+      <div class="mt-2 d-flex justify-content-end">
+        <h4 class="badge badge-danger">TEST MODUS</h4>
+      </div>
+    </ng-container>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
 </ng-container>
 <ng-container *ngIf="!loggedInUser">
+  <ng-container *ngIf="isTestMode">
+      <div class="mt-2 mr-4 d-flex justify-content-end">
+        <h4 class="badge badge-danger">TEST MODUS</h4>
+      </div>
+  </ng-container>
   <app-login (login)="loginUser($event)"></app-login>
   <app-footer></app-footer>
 </ng-container>

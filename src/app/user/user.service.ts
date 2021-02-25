@@ -26,6 +26,10 @@ export class UserService {
     );
   }
 
+  getCurrentUser(id: number): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'users/' + id);
+  }
+
   checkEmailExists(email: string): Observable<boolean> {
     return this.http.get<boolean>(this.baseUrl + 'users/emailexists?email=' + email);
   }

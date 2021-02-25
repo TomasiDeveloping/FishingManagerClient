@@ -68,6 +68,9 @@ export class AdminUsersComponent implements OnInit {
   }
 
   onEditUser(event: RecordDoubleClickEventArgs): void {
+    if (!event.rowData) {
+      return;
+    }
     const dialogRef = this.dialog.open(UserUpdateDialogComponent, {
       width: '80%',
       height: 'auto',
@@ -104,6 +107,7 @@ export class AdminUsersComponent implements OnInit {
       rightId = 0;
       rightName = '';
       userId = 0;
+      userFlag = 1;
     };
   }
 

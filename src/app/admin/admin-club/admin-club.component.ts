@@ -32,6 +32,7 @@ export class AdminClubComponent implements OnInit {
       fishingClubId: new FormControl(this.fishingClub.fishingClubId),
       name: new FormControl(this.fishingClub.name, Validators.required),
       webSite: new FormControl(this.fishingClub.website),
+      externRuleUrl: new FormControl(this.fishingClub.externRuleUrl),
       address: new FormGroup({
         title: new FormControl(this.fishingClub.address.title),
         phone: new FormControl(this.fishingClub.address.phone, Validators.required),

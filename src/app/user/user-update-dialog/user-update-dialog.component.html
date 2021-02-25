@@ -62,8 +62,7 @@
                 (userForm.controls.email.dirty || userForm.controls.email.touched),
                 'is-valid': userForm.controls.email.valid
               }"
-              formControlName="email"
-              [readOnly]="isTestMode">
+              formControlName="email">
             <div class="invalid-feedback"
                  *ngIf="userForm.controls.email.errors && (userForm.controls.email.dirty || userForm.controls.email.touched)">
               <p *ngIf="userForm.controls.email.errors.required">E-Mail ist ein Pflichtfeld</p>

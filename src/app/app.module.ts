@@ -62,6 +62,7 @@ import {SpinnerInterceptor} from './core/interceptors/spinner.interceptor';
 import {ForgotPasswordDialogComponent} from './login/forgot-password-dialog/forgot-password-dialog.component';
 import {FooterContactComponent} from './core/footer/footer-contact/footer-contact.component';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
+import { FooterImpressumComponent } from './core/footer/footer-impressum/footer-impressum.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
     ClubRulesComponent,
     ForgotPasswordDialogComponent,
     FooterContactComponent,
+    FooterImpressumComponent,
   ],
   imports: [
     BrowserModule,

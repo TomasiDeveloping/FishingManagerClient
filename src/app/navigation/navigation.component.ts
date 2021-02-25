@@ -6,6 +6,7 @@ import {UserUpdateDialogComponent} from '../user/user-update-dialog/user-update-
 import * as jwt_decode from 'jwt-decode';
 import {JwtPayload} from 'jwt-decode';
 import Swal from 'sweetalert2';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 export class NavigationComponent implements OnInit {
   loggedInUser = false;
   currentUser: User;
+  isTestMode = environment.isTestMode;
 
   constructor(private userService: UserService,
               private dialog: MatDialog) {
@@ -50,6 +52,11 @@ export class NavigationComponent implements OnInit {
   getCurrentUser(): void {
     this.userService.getUserById(+localStorage.getItem('id')).subscribe(result => {
       this.currentUser = result;
+      if (result.userFlag === 1) {
+        Swal.fire('Passwort', 'Bitte Passwort ändern', 'info').then(() => {
+          this.onUpdate();
+        });
+      }
     });
   }
 

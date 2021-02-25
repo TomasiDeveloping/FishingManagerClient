@@ -24,4 +24,9 @@ export class FishCatchHistoryService {
   updateStatistic(statisticId: number, statistic: Statistic): Observable<Statistic> {
     return this.http.put<Statistic>(this.baseUrl + 'statistics/' + statisticId, statistic);
   }
+
+  createStatisticOfYear(year: string): Observable<any> {
+    // @ts-ignore
+    return this.http.get<any>(this.baseUrl + 'statistics/excel?year=' + year, { responseType: 'blob'});
+  }
 }
