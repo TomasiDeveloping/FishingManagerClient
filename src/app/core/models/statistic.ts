@@ -7,6 +7,7 @@ export interface Statistic {
   licenceName: string;
   statistic: CatchStatistic;
 }
+
 export interface CatchStatistic {
   fishingClub: string;
   firstName: string;
@@ -25,6 +26,7 @@ export interface Days {
   hour: string;
   fishCatches: FishCatch[];
 }
+
 export interface FishCatch {
   fish: string;
   number: string;

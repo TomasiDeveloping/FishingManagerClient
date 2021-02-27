@@ -2,7 +2,12 @@
   <div class="card mb-4">
     <h3 class="card-header">{{user.firstName}} {{user.lastName}}</h3>
     <div class="card-body">
-      <img src="./assets/images/user.png" class="img-thumbnail rounded float-right" alt="{{user.firstName}}">
+      <img
+        src="{{user.pictureUrl || './assets/images/user.png'}}"
+        class="thumbnail rounded float-right"
+        width="100px"
+        height="auto"
+        alt="{{user.firstName}}">
       <p class="card-text">{{user.address.street}}</p>
       <p class="card-text">{{user.address.zip}} {{user.address.city}}</p>
       <hr>

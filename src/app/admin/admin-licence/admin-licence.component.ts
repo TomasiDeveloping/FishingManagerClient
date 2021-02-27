@@ -58,6 +58,7 @@ export class AdminLicenceComponent implements OnInit {
       creatorName = '';
       endDate = new Date();
       licenceId = 0;
+      year = new Date().getFullYear();
       licenceName = '';
       paid = false;
       startDate = new Date();

@@ -27,6 +27,6 @@ export class FishCatchHistoryService {
 
   createStatisticOfYear(year: string): Observable<any> {
     // @ts-ignore
-    return this.http.get<any>(this.baseUrl + 'statistics/excel?year=' + year, { responseType: 'blob'});
+    return this.http.get<any>(this.baseUrl + 'statistics/excel?year=' + year, {responseType: 'blob'});
   }
 }

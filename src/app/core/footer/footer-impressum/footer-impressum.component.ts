@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-footer-impressum',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class FooterImpressumComponent implements OnInit {
   currentYear = new Date().getFullYear();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

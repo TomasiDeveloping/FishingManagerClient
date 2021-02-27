@@ -17,6 +17,7 @@ export class NavigationComponent implements OnInit {
   loggedInUser = false;
   currentUser: User;
   isTestMode = environment.isTestMode;
+  appVersion = environment.appVersion;
 
   constructor(private userService: UserService,
               private dialog: MatDialog) {

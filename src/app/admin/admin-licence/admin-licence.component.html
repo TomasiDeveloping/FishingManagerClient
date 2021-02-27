@@ -10,12 +10,14 @@
     [allowResizing]="true"
     [allowExcelExport]="true"
     [pageSettings]="{pageSize: 10}"
+    [allowPaging]="true"
     [toolbar]="['ExcelExport', 'Search']"
     (toolbarClick)="toolbarClick($event)"
     (recordDoubleClick)="onUpdateLicence($event)"
     [dataSource]="licences">
     <e-columns>
       <e-column field="licenceName" headerText="Lizenz" textAlign="left" width="120"></e-column>
+      <e-column field="year" headerText="Jahr" textAlign="left" width="120"></e-column>
       <e-column field="userName" headerText="Inhaber" textAlign="left" width="120"></e-column>
       <e-column field="creatorName" headerText="Aussteller" textAlign="left" width="120"></e-column>
       <e-column field="startDate" headerText="Gültig von:" textAlign="left" width="120" type="date"

@@ -1,10 +1,16 @@
 a.dropdown-item {
   cursor: pointer;
 }
+
 .btn-group > button {
   color: black;
 }
+
 .container {
   min-height: calc(100vh - 50px);
 }
 
+img {
+  width: 30px;
+  height: 30px;
+}

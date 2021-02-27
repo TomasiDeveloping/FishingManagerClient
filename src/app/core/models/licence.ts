@@ -1,6 +1,7 @@
 export interface Licence {
   licenceId: number;
   licenceName: string;
+  year: number;
   userName: string;
   userId: number;
   creatorName: string;

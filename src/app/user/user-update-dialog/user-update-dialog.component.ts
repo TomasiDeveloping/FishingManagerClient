@@ -80,7 +80,7 @@ export class UserUpdateDialogComponent implements OnInit {
       userId: new FormControl(this.currentUser.userId),
       rightId: new FormControl(this.currentUser.rightId),
       active: new FormControl(this.currentUser.active),
-      pictureUrl: new FormControl(this.currentUser.PictureUrl),
+      pictureUrl: new FormControl(this.currentUser.pictureUrl),
       firstName: new FormControl(this.currentUser.firstName, Validators.required),
       lastName: new FormControl(this.currentUser.lastName, Validators.required),
       email: new FormControl(this.currentUser.email,
@@ -129,6 +129,12 @@ export class UserUpdateDialogComponent implements OnInit {
       {
         title: 'Neues Passwort',
         preConfirm: inputValue => {
+          if (inputValue.length <= 0) {
+            Swal.showValidationMessage('Passwort darf nicht leer sein');
+          }
+          if (inputValue.length <= 5) {
+            Swal.showValidationMessage('Passwort muss mindestens 6 Zeichen enthalten');
+          }
           this.newPassword = inputValue;
         }
       },

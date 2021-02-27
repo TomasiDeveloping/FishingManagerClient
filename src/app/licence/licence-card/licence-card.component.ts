@@ -8,8 +8,10 @@ import {Licence} from '../../core/models/licence';
   styleUrls: ['./licence-card.component.css']
 })
 export class LicenceCardComponent implements OnInit {
-  licences: Licence[];
+  licences: Licence[] = [];
+  oldLicences: Licence[] = [];
   currentDate = new Date();
+  panelOpenState = false;
 
   constructor(private licenceService: LicenceService) {
   }
@@ -20,7 +22,13 @@ export class LicenceCardComponent implements OnInit {
 
   getLicencesByUser(): void {
     this.licenceService.getLicenceByUserId(+localStorage.getItem('id')).subscribe(result => {
-      this.licences = result;
+      result.forEach(l => {
+        if (l.year === this.currentDate.getFullYear()) {
+          this.licences.push(l);
+        } else {
+          this.oldLicences.push(l);
+        }
+      });
     });
   }
 }

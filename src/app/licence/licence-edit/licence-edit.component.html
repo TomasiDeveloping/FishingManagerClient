@@ -42,6 +42,24 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="year">Jahr</label>
+          <input
+            class="form-control"
+            [ngClass]="{
+            'is-invalid': licenceForm.controls.year.invalid &&
+            (licenceForm.controls.year.dirty || licenceForm.controls.year.touched),
+            'is-valid': licenceForm.controls.userId.valid
+            }"
+            type="number"
+            formControlName="year"
+            id="year">
+          <div class="invalid-feedback"
+               *ngIf="licenceForm.controls.year.errors &&
+                   (licenceForm.controls.year.dirty || licenceForm.controls.year.touched)">
+            <p *ngIf="licenceForm.controls.year.errors.required">Jahr ist ein Pflichtfeld</p>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="startDate">Gültig von:</label>
           <input type="text"
                  id="startDate"

@@ -20,7 +20,7 @@
   <ng-container *ngIf="userId">
     <app-user-card [userId]="userId"></app-user-card>
   </ng-container>
-  <ng-container *ngIf="licences">
+  <ng-container *ngIf="licences && licences.length > 0">
     <table class="table table-striped table-bordered">
       <thead>
       <tr>
@@ -44,5 +44,8 @@
       </tr>
       </tbody>
     </table>
+  </ng-container>
+  <ng-container *ngIf="licences && licences.length <= 0">
+    <h2>Keine Lizenzen vorhanden für {{this.currentDate.getFullYear()}}</h2>
   </ng-container>
 </div>

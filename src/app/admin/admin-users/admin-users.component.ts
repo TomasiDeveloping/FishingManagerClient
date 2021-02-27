@@ -98,7 +98,7 @@ export class AdminUsersComponent implements OnInit {
   newUser(): User {
     // tslint:disable-next-line:new-parens
     return new class implements User {
-      PictureUrl = '';
+      pictureUrl = '';
       active = true;
       address: Address;
       email = '';

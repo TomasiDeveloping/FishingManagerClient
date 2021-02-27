@@ -49,6 +49,7 @@ export class LicenceEditComponent implements OnInit {
     this.licenceForm = new FormGroup({
       licenceId: new FormControl(this.licence.licenceId),
       licenceName: new FormControl(this.licence.licenceName, Validators.required),
+      year: new FormControl(this.licence.year, Validators.required),
       userId: new FormControl(this.licence.userId, Validators.required),
       creatorId: new FormControl(this.licence.creatorId),
       startDate: new FormControl(new Date(this.licence.startDate), Validators.required),

@@ -6,7 +6,7 @@
 }
 
 .container {
-  margin-top: 8em;
+  margin-top: 2em;
 }
 
 .container {
@@ -19,4 +19,9 @@
 
 .forgotPassword:hover {
   cursor: pointer;
+}
+
+img {
+  width: 200px;
+  height: auto;
 }

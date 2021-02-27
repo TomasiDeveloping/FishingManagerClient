@@ -16,6 +16,40 @@
       <p class="card-text text-danger" *ngIf="!(currentDate | amIsBefore:licence.endDate:'hour')">Lizenz abgelaufen</p>
     </div>
   </div>
+  <ng-container *ngIf="oldLicences && oldLicences.length > 0">
+    <div class="mb-4">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Alte Lizenzen
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Jahr</th>
+              <th scope="col">Lizenzname</th>
+              <th scope="col">Gültig von:</th>
+              <th scope="col">Gültig bis:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let licence of oldLicences">
+              <td>{{licence.year}}</td>
+              <td>{{licence.licenceName}}</td>
+              <td>{{licence.startDate | date: 'dd.MM.yyyy'}}</td>
+              <td>{{licence.endDate | date: 'dd.MM.yyyy'}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </ng-container>
 </ng-container>
 <ng-container *ngIf="licences && licences.length <= 0">
   <h2>Keine Lizenzen verfügbar</h2>

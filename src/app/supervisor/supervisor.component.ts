@@ -52,7 +52,11 @@ export class SupervisorComponent implements OnInit {
 
   getLicencesByUserId(userId: number): void {
     this.licenceService.getLicenceByUserId(userId).subscribe(result => {
-      this.licences = result;
+      this.licences = result.filter(l => {
+        if (l.year === this.currentDate.getFullYear()) {
+          return l;
+        }
+      });
     });
   }
 

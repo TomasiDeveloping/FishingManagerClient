@@ -6,7 +6,7 @@ export interface User {
   rightName: string;
   firstName: string;
   lastName: string;
-  PictureUrl: string;
+  pictureUrl: string;
   email: string;
   address: Address;
   active: boolean;
