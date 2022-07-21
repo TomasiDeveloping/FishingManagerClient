@@ -24,7 +24,7 @@
     "@syncfusion/ej2-angular-grids": "^18.4.43",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "ngx-bootstrap": "^6.2.0",
     "ngx-bootstrap-navbar": "0.0.5",
     "ngx-moment": "^5.0.0",
